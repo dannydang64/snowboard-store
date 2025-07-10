@@ -68,7 +68,7 @@ export default function ProductDetail() {
     }
   };
 
-  const addToCart = () => {
+  const addToCart = (redirect = false) => {
     if (!product) return;
     
     // Get existing cart from localStorage
@@ -86,7 +86,7 @@ export default function ProductDetail() {
         productId: product.id,
         name: product.name,
         price: product.price,
-        image: product.images[0],
+        image: product.images?.[0] || `/images/product-${product.category || 'snowboard'}-1.jpg`,
         quantity: quantity
       });
     }
@@ -97,7 +97,13 @@ export default function ProductDetail() {
     // Dispatch event to notify components about cart update
     window.dispatchEvent(new Event('cartUpdated'));
     
-    alert(`Added ${quantity} ${product.name} to your cart!`);
+    if (redirect) {
+      // Redirect to checkout page
+      window.location.href = '/checkout';
+    } else {
+      // Show confirmation message
+      alert(`Added ${quantity} ${product.name} to your cart!`);
+    }
   };
 
   const renderRatingStars = (rating) => {
@@ -249,7 +255,7 @@ export default function ProductDetail() {
             
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <button 
-                onClick={addToCart}
+                onClick={() => addToCart(false)}
                 disabled={product.stock <= 0}
                 className={`btn-primary flex-1 flex items-center justify-center ${
                   product.stock <= 0 ? 'opacity-50 cursor-not-allowed' : ''
@@ -258,7 +264,15 @@ export default function ProductDetail() {
                 <FaShoppingCart className="mr-2" />
                 Add to Cart
               </button>
-              <button className="btn-secondary flex-1">Buy Now</button>
+              <button 
+                onClick={() => addToCart(true)}
+                disabled={product.stock <= 0}
+                className={`btn-secondary flex-1 ${
+                  product.stock <= 0 ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+              >
+                Buy Now
+              </button>
             </div>
             
             {/* Product Metadata */}
