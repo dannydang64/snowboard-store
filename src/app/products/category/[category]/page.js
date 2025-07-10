@@ -311,9 +311,12 @@ export default function CategoryPage() {
                 {filteredProducts.map(product => (
                   <div key={product.id} className="card group">
                     <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden bg-gray-200 relative">
-                      <div className="h-64 bg-gray-300 flex items-center justify-center">
-                        {/* Placeholder for actual images */}
-                        <span className="text-gray-500">{product.name} Image</span>
+                      <div className="h-64 relative">
+                        <img 
+                          src={product.images?.[0] || `/images/product-${product.category || 'snowboard'}-1.jpg`} 
+                          alt={product.name}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                       <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                         <Link href={`/products/${product.id}`} className="bg-white text-primary font-semibold px-4 py-2 rounded">

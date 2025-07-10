@@ -1,9 +1,17 @@
 'use client';
 
-import { useState } from 'react';
-import { FaEnvelope, FaLock, FaGoogle, FaFacebook } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { FaEnvelope, FaLock } from 'react-icons/fa';
+import { auth } from '@/lib/firebase';
+import { 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword,
+  updateProfile
+} from 'firebase/auth';
 
 export default function AuthForm({ mode = 'login' }) {
+  const router = useRouter();
   const [authMode, setAuthMode] = useState(mode);
   const [formData, setFormData] = useState({
     email: '',
@@ -14,6 +22,18 @@ export default function AuthForm({ mode = 'login' }) {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  
+  // Check if user is already logged in
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in, redirect to account page
+        router.push('/account');
+      }
+    });
+    
+    return () => unsubscribe();
+  }, [router]);
   
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -59,33 +79,38 @@ export default function AuthForm({ mode = 'login' }) {
     setLoading(true);
     
     try {
-      // In a real app, we would use Firebase Auth here
-      // For this mock app, we'll simulate authentication
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
       if (authMode === 'login') {
-        // Simulate successful login
-        localStorage.setItem('user', JSON.stringify({
-          email: formData.email,
-          name: 'Mock User'
-        }));
-        
-        // Refresh the page to update auth state
-        window.location.href = '/account';
+        // Sign in with email and password
+        await signInWithEmailAndPassword(auth, formData.email, formData.password);
+        router.push('/account');
       } else {
-        // Simulate successful registration
-        localStorage.setItem('user', JSON.stringify({
-          email: formData.email,
-          name: `${formData.firstName} ${formData.lastName}`
-        }));
+        // Create a new user with email and password
+        const userCredential = await createUserWithEmailAndPassword(
+          auth, 
+          formData.email, 
+          formData.password
+        );
         
-        // Redirect to account page
-        window.location.href = '/account';
+        // Update the user profile with display name
+        await updateProfile(userCredential.user, {
+          displayName: `${formData.firstName} ${formData.lastName}`
+        });
+        
+        router.push('/account');
       }
     } catch (err) {
-      setError(err.message || 'An error occurred during authentication');
+      console.error('Authentication error:', err);
+      
+      // Handle specific Firebase auth errors with user-friendly messages
+      if (err.code === 'auth/email-already-in-use') {
+        setError('This email is already registered. Please log in instead.');
+      } else if (err.code === 'auth/invalid-email') {
+        setError('Please enter a valid email address.');
+      } else if (err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password') {
+        setError('Invalid email or password. Please try again.');
+      } else {
+        setError(err.message || 'An error occurred during authentication');
+      }
     } finally {
       setLoading(false);
     }
@@ -95,6 +120,8 @@ export default function AuthForm({ mode = 'login' }) {
     setAuthMode(authMode === 'login' ? 'register' : 'login');
     setError(null);
   };
+  
+  // Email/password authentication only
   
   return (
     <div className="bg-white rounded-lg shadow-md p-8 max-w-md mx-auto">
@@ -226,23 +253,7 @@ export default function AuthForm({ mode = 'login' }) {
         </button>
       </form>
       
-      <div className="relative flex items-center justify-center my-6">
-        <div className="border-t border-gray-300 absolute w-full"></div>
-        <div className="bg-white px-4 relative text-sm text-gray-500">
-          Or continue with
-        </div>
-      </div>
-      
-      <div className="grid grid-cols-2 gap-4 mb-6">
-        <button className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md transition-colors">
-          <FaFacebook className="mr-2" />
-          Facebook
-        </button>
-        <button className="flex items-center justify-center bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md transition-colors">
-          <FaGoogle className="mr-2" />
-          Google
-        </button>
-      </div>
+      {/* Email/password authentication only */}
       
       <div className="text-center">
         <button 

@@ -3,12 +3,25 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FaShoppingCart, FaUser, FaBars, FaTimes } from 'react-icons/fa';
+import { FaShoppingCart, FaUser, FaBars, FaTimes, FaSignInAlt } from 'react-icons/fa';
+import { auth } from '@/lib/firebase';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const [user, setUser] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
   const pathname = usePathname();
+
+  // Check authentication status
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      setUser(currentUser);
+      setAuthLoading(false);
+    });
+    
+    return () => unsubscribe();
+  }, []);
 
   // Get cart count from localStorage on client side
   useEffect(() => {
@@ -54,7 +67,7 @@ export default function Navigation() {
           
           {/* Desktop navigation */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-center space-x-4">
+            <div className="ml-10 flex items-baseline space-x-4">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
@@ -70,8 +83,19 @@ export default function Navigation() {
               ))}
             </div>
           </div>
-          
-          <div className="hidden md:flex items-center space-x-4">
+
+          <div className="flex items-center space-x-4">
+            {!authLoading && (
+              user ? (
+                <Link href="/account" className="text-white hover:text-gray-200" title={`Hello, ${user.displayName || 'User'}`}>
+                  <FaUser className="h-6 w-6" />
+                </Link>
+              ) : (
+                <Link href="/login" className="text-white hover:text-gray-200" title="Sign In">
+                  <FaSignInAlt className="h-5 w-5" />
+                </Link>
+              )
+            )}
             <Link href="/cart" className="relative">
               <FaShoppingCart className="h-6 w-6" />
               {cartCount > 0 && (
@@ -79,9 +103,6 @@ export default function Navigation() {
                   {cartCount}
                 </span>
               )}
-            </Link>
-            <Link href="/account" className="hover:text-gray-200">
-              <FaUser className="h-6 w-6" />
             </Link>
           </div>
           
@@ -123,13 +144,32 @@ export default function Navigation() {
                 {link.name}
               </Link>
             ))}
-            <Link
-              href="/account"
-              className="block px-3 py-2 rounded-md text-base font-medium hover:bg-primary-700 hover:text-white"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              My Account
-            </Link>
+            
+            {!authLoading && (
+              user ? (
+                <Link
+                  href="/account"
+                  className="block px-3 py-2 rounded-md text-base font-medium hover:bg-primary-700 hover:text-white"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <div className="flex items-center">
+                    <FaUser className="mr-2" />
+                    My Account
+                  </div>
+                </Link>
+              ) : (
+                <Link
+                  href="/login"
+                  className="block px-3 py-2 rounded-md text-base font-medium hover:bg-primary-700 hover:text-white"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <div className="flex items-center">
+                    <FaSignInAlt className="mr-2" />
+                    Sign In
+                  </div>
+                </Link>
+              )
+            )}
           </div>
         </div>
       )}

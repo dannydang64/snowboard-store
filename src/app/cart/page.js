@@ -122,9 +122,12 @@ export default function CartPage() {
                       <tr key={item.productId}>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
-                            <div className="h-16 w-16 bg-gray-300 rounded flex items-center justify-center mr-4">
-                              {/* Placeholder for actual images */}
-                              <span className="text-xs text-gray-500">Image</span>
+                            <div className="h-16 w-16 rounded overflow-hidden mr-4">
+                              <img 
+                                src={item.image || `/images/product-${item.category || 'snowboard'}-1.jpg`} 
+                                alt={item.name}
+                                className="w-full h-full object-cover"
+                              />
                             </div>
                             <div>
                               <Link 

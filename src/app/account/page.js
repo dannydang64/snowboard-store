@@ -7,6 +7,8 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import AuthForm from '@/components/auth/AuthForm';
 import { FaUser, FaShoppingBag, FaHeart, FaSignOutAlt, FaCog } from 'react-icons/fa';
+import { auth } from '@/lib/firebase';
+import { signOut } from 'firebase/auth';
 
 export default function AccountPage() {
   const router = useRouter();
@@ -16,16 +18,24 @@ export default function AccountPage() {
   const [orders, setOrders] = useState([]);
   
   useEffect(() => {
-    // Check if user is logged in
-    const checkAuth = () => {
-      const userData = localStorage.getItem('user');
-      if (userData) {
-        setUser(JSON.parse(userData));
+    // Check if user is logged in using Firebase Auth
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      if (currentUser) {
+        setUser({
+          email: currentUser.email,
+          name: currentUser.displayName || currentUser.email.split('@')[0],
+          photoURL: currentUser.photoURL,
+          uid: currentUser.uid
+        });
+      } else {
+        // If not logged in, redirect to login page
+        router.push('/login');
       }
       setLoading(false);
-    };
+    });
     
-    checkAuth();
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
     
     // Mock orders data
     setOrders([
@@ -51,9 +61,13 @@ export default function AccountPage() {
     ]);
   }, []);
   
-  const handleLogout = () => {
-    localStorage.removeItem('user');
-    router.push('/');
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      router.push('/');
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
   };
   
   const renderTabContent = () => {
