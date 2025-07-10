@@ -61,7 +61,7 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 font-bold text-xl">
-              SnowPeak
+              Snow Ice
             </Link>
           </div>
           

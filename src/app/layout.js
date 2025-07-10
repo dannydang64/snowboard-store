@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Snowboard Equipment Store',
+  title: 'Snow Ice - Snowboard Equipment Store',
   description: 'Your one-stop shop for premium snowboarding gear',
 };
 

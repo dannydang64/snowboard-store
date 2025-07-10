@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-lg font-semibold mb-4">SnowPeak</h3>
+            <h3 className="text-lg font-semibold mb-4">Snow Ice</h3>
             <p className="text-gray-300">
               Your one-stop shop for premium snowboarding gear. Quality equipment for all skill levels.
             </p>
@@ -100,7 +100,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-300">&copy; {new Date().getFullYear()} SnowPeak. All rights reserved.</p>
+          <p className="text-gray-300">&copy; {new Date().getFullYear()} Snow Ice. All rights reserved.</p>
           <div className="mt-4 md:mt-0 flex space-x-4">
             <Link href="/privacy" className="text-gray-300 hover:text-white text-sm">
               Privacy Policy

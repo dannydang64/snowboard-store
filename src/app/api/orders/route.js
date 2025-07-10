@@ -10,6 +10,8 @@ function generateOrderId() {
   return 'ORD-' + Date.now() + '-' + Math.random().toString(36).substring(2, 7).toUpperCase();
 }
 
+//testing git commit
+
 // Get orders
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
