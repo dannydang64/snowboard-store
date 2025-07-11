@@ -1,0 +1,625 @@
+
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Snow Ice Test Report</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+          }
+          h1, h2, h3 {
+            color: #2c3e50;
+          }
+          .summary {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+          }
+          .summary-box {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            width: 30%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          }
+          .passed { color: #28a745; }
+          .failed { color: #dc3545; }
+          .skipped { color: #6c757d; }
+          .chart-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+          }
+          .chart {
+            width: 48%;
+            height: 300px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          }
+          table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+          }
+          th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+          }
+          th {
+            background-color: #f8f9fa;
+          }
+          tr:hover {
+            background-color: #f5f5f5;
+          }
+          .test-name {
+            font-weight: bold;
+          }
+          .duration {
+            color: #6c757d;
+            font-size: 0.9em;
+          }
+          .priority-P0 { background-color: #ffcccc; }
+          .priority-P1 { background-color: #ffffcc; }
+          .priority-P2 { background-color: #ccffcc; }
+          .progress-bar {
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            margin-top: 5px;
+            overflow: hidden;
+          }
+          .progress {
+            height: 100%;
+            background-color: #28a745;
+            border-radius: 5px;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>Snow Ice Test Report</h1>
+        <p>Generated on 7/11/2025, 2:22:34 PM</p>
+        
+        <div class="summary">
+          <div class="summary-box">
+            <h3>Test Summary</h3>
+            <p>Total Tests: 32</p>
+            <p><span class="passed">Passed: 21</span></p>
+            <p><span class="failed">Failed: 11</span></p>
+            <p><span class="skipped">Skipped: 0</span></p>
+            <p>Pass Rate: 65.63%</p>
+            <div class="progress-bar">
+              <div class="progress" style="width: 65.63%"></div>
+            </div>
+          </div>
+          
+          <div class="summary-box">
+            <h3>Duration</h3>
+            <p>Start Time: 7/11/2025, 2:22:33 PM</p>
+            <p>End Time: Invalid Date</p>
+            <p>Total Duration: 0.95 seconds</p>
+          </div>
+          
+          <div class="summary-box">
+            <h3>Priority Coverage</h3>
+            <p>P0: 70.00% (7/10)</p>
+            <p>P1: 58.82% (10/17)</p>
+            <p>P2: 80.00% (4/5)</p>
+          </div>
+        </div>
+        
+        <div class="chart-container">
+          <div class="chart">
+            <h3>Category Results</h3>
+            <canvas id="categoryChart"></canvas>
+          </div>
+          
+          <div class="chart">
+            <h3>Priority Results</h3>
+            <canvas id="priorityChart"></canvas>
+          </div>
+        </div>
+        
+        <h2>Failed Tests</h2>
+        
+      <table>
+        <thead>
+          <tr>
+            <th>Test Name</th>
+            <th>Category</th>
+            <th>Priority</th>
+            <th>Duration</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+        <tr class="priority-P0">
+          <td class="test-name">P0: Should complete checkout process with valid information</td>
+          <td>checkout</td>
+          <td>P0</td>
+          <td class="duration">0.01s</td>
+          <td class="failed">FAILED</td>
+        </tr>
+      
+          <tr>
+            <td colspan="5">
+              <pre>Error: expect(received).toContain(expected) // indexOf
+
+Expected substring: &quot;/checkout&quot;
+Received string:    &quot;http://localhost:3000/products/sb-001&quot;
+    at Object.toContain (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:60:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre>
+            </td>
+          </tr>
+        
+        <tr class="priority-P1">
+          <td class="test-name">P1: Should validate shipping information form</td>
+          <td>checkout</td>
+          <td>P1</td>
+          <td class="duration">0.00s</td>
+          <td class="failed">FAILED</td>
+        </tr>
+      
+          <tr>
+            <td colspan="5">
+              <pre>Error: expect(received).toBeGreaterThan(expected)
+
+Expected: &gt; 0
+Received:   0
+    at Object.toBeGreaterThan (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:95:34)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre>
+            </td>
+          </tr>
+        
+        <tr class="priority-P1">
+          <td class="test-name">P1: Order summary should show correct information</td>
+          <td>checkout</td>
+          <td>P1</td>
+          <td class="duration">0.00s</td>
+          <td class="failed">FAILED</td>
+        </tr>
+      
+          <tr>
+            <td colspan="5">
+              <pre>Error: expect(received).toBeGreaterThan(expected)
+
+Matcher error: received value must be a number or bigint
+
+Received has value: undefined
+    at Object.toBeGreaterThan (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:151:22)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre>
+            </td>
+          </tr>
+        
+        <tr class="priority-P1">
+          <td class="test-name">P1: Order confirmation page should display correct information</td>
+          <td>checkout</td>
+          <td>P1</td>
+          <td class="duration">0.00s</td>
+          <td class="failed">FAILED</td>
+        </tr>
+      
+          <tr>
+            <td colspan="5">
+              <pre>Error: expect(received).toBeTruthy()
+
+Received: null
+    at Object.toBeTruthy (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:207:25)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre>
+            </td>
+          </tr>
+        
+        <tr class="priority-P1">
+          <td class="test-name">P1: Should checkout with multiple products</td>
+          <td>checkout</td>
+          <td>P1</td>
+          <td class="duration">0.00s</td>
+          <td class="failed">FAILED</td>
+        </tr>
+      
+          <tr>
+            <td colspan="5">
+              <pre>Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: &quot;order-1752268953927&quot;
+    at Object.toBe (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:263:29)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre>
+            </td>
+          </tr>
+        
+        <tr class="priority-P1">
+          <td class="test-name">P1: Should reject invalid payment information</td>
+          <td>checkout</td>
+          <td>P1</td>
+          <td class="duration">0.00s</td>
+          <td class="failed">FAILED</td>
+        </tr>
+      
+          <tr>
+            <td colspan="5">
+              <pre>Error: expect(received).toBeGreaterThan(expected)
+
+Expected: &gt; 0
+Received:   0
+    at Object.toBeGreaterThan (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:300:34)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre>
+            </td>
+          </tr>
+        
+        <tr class="priority-P0">
+          <td class="test-name">P0: Should navigate to all product categories from home page</td>
+          <td>product</td>
+          <td>P0</td>
+          <td class="duration">0.00s</td>
+          <td class="failed">FAILED</td>
+        </tr>
+      
+          <tr>
+            <td colspan="5">
+              <pre>Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+Expected: &gt;= 4
+Received:    0
+    at Object.toBeGreaterThanOrEqual (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:42:31)</pre>
+            </td>
+          </tr>
+        
+        <tr class="priority-P0">
+          <td class="test-name">P0: Should view product details from category page</td>
+          <td>product</td>
+          <td>P0</td>
+          <td class="duration">0.00s</td>
+          <td class="failed">FAILED</td>
+        </tr>
+      
+          <tr>
+            <td colspan="5">
+              <pre>Error: expect(received).toBeGreaterThan(expected)
+
+Matcher error: received value must be a number or bigint
+
+Received has type:  array
+Received has value: []
+    at Object.toBeGreaterThan (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:80:26)</pre>
+            </td>
+          </tr>
+        
+        <tr class="priority-P1">
+          <td class="test-name">P1: Should display related products on product detail page</td>
+          <td>product</td>
+          <td>P1</td>
+          <td class="duration">0.00s</td>
+          <td class="failed">FAILED</td>
+        </tr>
+      
+          <tr>
+            <td colspan="5">
+              <pre>Error: expect(received).toBeGreaterThan(expected)
+
+Matcher error: received value must be a number or bigint
+
+Received has type:  array
+Received has value: []
+    at Object.toBeGreaterThan (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:123:34)</pre>
+            </td>
+          </tr>
+        
+        <tr class="priority-P2">
+          <td class="test-name">P2: Out of stock products should show correct status</td>
+          <td>product</td>
+          <td>P2</td>
+          <td class="duration">0.00s</td>
+          <td class="failed">FAILED</td>
+        </tr>
+      
+          <tr>
+            <td colspan="5">
+              <pre>Error: Failed to click product: Product index 0 out of bounds
+    at ProductsPage.clickProduct (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductsPage.js:138:13)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:191:5)</pre>
+            </td>
+          </tr>
+        
+        <tr class="priority-P1">
+          <td class="test-name">P1: Product images should load correctly</td>
+          <td>product</td>
+          <td>P1</td>
+          <td class="duration">0.00s</td>
+          <td class="failed">FAILED</td>
+        </tr>
+      
+          <tr>
+            <td colspan="5">
+              <pre>Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: null
+    at Object.toBe (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:232:25)</pre>
+            </td>
+          </tr>
+        
+        </tbody>
+      </table>
+    
+        
+        <h2>Passed Tests</h2>
+        
+      <table>
+        <thead>
+          <tr>
+            <th>Test Name</th>
+            <th>Category</th>
+            <th>Priority</th>
+            <th>Duration</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+        <tr class="priority-P2">
+          <td class="test-name">P2: Should not proceed to checkout with empty cart</td>
+          <td>checkout</td>
+          <td>P2</td>
+          <td class="duration">0.00s</td>
+          <td class="passed">PASSED</td>
+        </tr>
+      
+        <tr class="priority-P1">
+          <td class="test-name">P1: Page load times should meet performance thresholds</td>
+          <td>other</td>
+          <td>P1</td>
+          <td class="duration">0.00s</td>
+          <td class="passed">PASSED</td>
+        </tr>
+      
+        <tr class="priority-P1">
+          <td class="test-name">P1: API response times should meet performance thresholds</td>
+          <td>other</td>
+          <td>P1</td>
+          <td class="duration">0.00s</td>
+          <td class="passed">PASSED</td>
+        </tr>
+      
+        <tr class="priority-P1">
+          <td class="test-name">P1: User interaction times should meet performance thresholds</td>
+          <td>other</td>
+          <td>P1</td>
+          <td class="duration">0.00s</td>
+          <td class="passed">PASSED</td>
+        </tr>
+      
+        <tr class="priority-P0">
+          <td class="test-name">P0: Checkout flow should meet performance thresholds</td>
+          <td>other</td>
+          <td>P0</td>
+          <td class="duration">0.00s</td>
+          <td class="passed">PASSED</td>
+        </tr>
+      
+        <tr class="priority-P2">
+          <td class="test-name">P2: Generate performance report</td>
+          <td>other</td>
+          <td>P2</td>
+          <td class="duration">0.00s</td>
+          <td class="passed">PASSED</td>
+        </tr>
+      
+        <tr class="priority-P0">
+          <td class="test-name">P0: Should add product to cart from product detail page</td>
+          <td>cart</td>
+          <td>P0</td>
+          <td class="duration">0.00s</td>
+          <td class="passed">PASSED</td>
+        </tr>
+      
+        <tr class="priority-P0">
+          <td class="test-name">P0: Should update product quantity in cart</td>
+          <td>cart</td>
+          <td>P0</td>
+          <td class="duration">0.00s</td>
+          <td class="passed">PASSED</td>
+        </tr>
+      
+        <tr class="priority-P0">
+          <td class="test-name">P0: Should remove product from cart</td>
+          <td>cart</td>
+          <td>P0</td>
+          <td class="duration">0.00s</td>
+          <td class="passed">PASSED</td>
+        </tr>
+      
+        <tr class="priority-P1">
+          <td class="test-name">P1: Cart should persist across page refreshes</td>
+          <td>cart</td>
+          <td>P1</td>
+          <td class="duration">0.00s</td>
+          <td class="passed">PASSED</td>
+        </tr>
+      
+        <tr class="priority-P1">
+          <td class="test-name">P1: Cart API operations should work correctly</td>
+          <td>cart</td>
+          <td>P1</td>
+          <td class="duration">0.00s</td>
+          <td class="passed">PASSED</td>
+        </tr>
+      
+        <tr class="priority-P1">
+          <td class="test-name">P1: Buy Now functionality should work correctly</td>
+          <td>cart</td>
+          <td>P1</td>
+          <td class="duration">0.00s</td>
+          <td class="passed">PASSED</td>
+        </tr>
+      
+        <tr class="priority-P1">
+          <td class="test-name">P1: Cart calculations should be correct</td>
+          <td>cart</td>
+          <td>P1</td>
+          <td class="duration">0.00s</td>
+          <td class="passed">PASSED</td>
+        </tr>
+      
+        <tr class="priority-P2">
+          <td class="test-name">P2: Empty cart should show appropriate message</td>
+          <td>cart</td>
+          <td>P2</td>
+          <td class="duration">0.00s</td>
+          <td class="passed">PASSED</td>
+        </tr>
+      
+        <tr class="priority-P0">
+          <td class="test-name">P0: Products API should return correct data</td>
+          <td>api</td>
+          <td>P0</td>
+          <td class="duration">0.00s</td>
+          <td class="passed">PASSED</td>
+        </tr>
+      
+        <tr class="priority-P0">
+          <td class="test-name">P0: Cart API should support CRUD operations</td>
+          <td>api</td>
+          <td>P0</td>
+          <td class="duration">0.00s</td>
+          <td class="passed">PASSED</td>
+        </tr>
+      
+        <tr class="priority-P0">
+          <td class="test-name">P0: Orders API should create and retrieve orders</td>
+          <td>api</td>
+          <td>P0</td>
+          <td class="duration">0.00s</td>
+          <td class="passed">PASSED</td>
+        </tr>
+      
+        <tr class="priority-P1">
+          <td class="test-name">P1: Orders API should update order status</td>
+          <td>api</td>
+          <td>P1</td>
+          <td class="duration">0.00s</td>
+          <td class="passed">PASSED</td>
+        </tr>
+      
+        <tr class="priority-P1">
+          <td class="test-name">P1: API should handle errors correctly</td>
+          <td>api</td>
+          <td>P1</td>
+          <td class="duration">0.00s</td>
+          <td class="passed">PASSED</td>
+        </tr>
+      
+        <tr class="priority-P2">
+          <td class="test-name">P2: API should respond within acceptable time</td>
+          <td>api</td>
+          <td>P2</td>
+          <td class="duration">0.00s</td>
+          <td class="passed">PASSED</td>
+        </tr>
+      
+        <tr class="priority-P1">
+          <td class="test-name">P1: Product API should return correct data</td>
+          <td>product</td>
+          <td>P1</td>
+          <td class="duration">0.00s</td>
+          <td class="passed">PASSED</td>
+        </tr>
+      
+        </tbody>
+      </table>
+    
+        
+        <h2>Skipped Tests</h2>
+        <p>No tests in this category.</p>
+        
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+          // Category Chart
+          const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+          new Chart(categoryCtx, {
+            type: 'bar',
+            data: {
+              labels: ['Product', 'Cart', 'Checkout', 'API'],
+              datasets: [
+                {
+                  label: 'Passed',
+                  data: [
+                    1,
+                    8,
+                    1,
+                    6
+                  ],
+                  backgroundColor: '#28a745'
+                },
+                {
+                  label: 'Failed',
+                  data: [
+                    5,
+                    0,
+                    6,
+                    0
+                  ],
+                  backgroundColor: '#dc3545'
+                },
+                {
+                  label: 'Skipped',
+                  data: [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  backgroundColor: '#6c757d'
+                }
+              ]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  stacked: false
+                },
+                x: {
+                  stacked: false
+                }
+              }
+            }
+          });
+          
+          // Priority Chart
+          const priorityCtx = document.getElementById('priorityChart').getContext('2d');
+          new Chart(priorityCtx, {
+            type: 'doughnut',
+            data: {
+              labels: ['P0 Passed', 'P0 Failed', 'P1 Passed', 'P1 Failed', 'P2 Passed', 'P2 Failed'],
+              datasets: [{
+                data: [
+                  7,
+                  3,
+                  10,
+                  7,
+                  4,
+                  1
+                ],
+                backgroundColor: [
+                  '#28a745', '#dc3545',
+                  '#5cb85c', '#f0ad4e',
+                  '#5bc0de', '#d9534f'
+                ]
+              }]
+            }
+          });
+        </script>
+      </body>
+      </html>
+    

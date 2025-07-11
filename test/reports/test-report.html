@@ -1,0 +1,932 @@
+<html><head><meta charset="utf-8"/><title>Snow Ice Test Report</title><style type="text/css">html,
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+body {
+  padding: 2rem 1rem;
+  font-size: 0.85rem;
+}
+.jesthtml-content {
+  margin: 0 auto;
+  max-width: 70rem;
+}
+header {
+  display: flex;
+  align-items: center;
+}
+#title {
+  margin: 0;
+  flex-grow: 1;
+}
+#logo {
+  height: 4rem;
+}
+#timestamp {
+  color: #777;
+  margin-top: 0.5rem;
+}
+
+/** SUMMARY */
+#summary {
+  color: #333;
+  margin: 2rem 0;
+  display: flex;
+  font-family: monospace;
+  font-size: 1rem;
+}
+#summary > div {
+  margin-right: 2rem;
+  background: #eee;
+  padding: 1rem;
+  min-width: 15rem;
+}
+#summary > div:last-child {
+  margin-right: 0;
+}
+@media only screen and (max-width: 720px) {
+  #summary {
+    flex-direction: column;
+  }
+  #summary > div {
+    margin-right: 0;
+    margin-top: 2rem;
+  }
+  #summary > div:first-child {
+    margin-top: 0;
+  }
+}
+
+.summary-total {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.summary-passed {
+  color: #4f8a10;
+  border-left: 0.4rem solid #4f8a10;
+  padding-left: 0.5rem;
+}
+.summary-failed,
+.summary-obsolete-snapshots {
+  color: #d8000c;
+  border-left: 0.4rem solid #d8000c;
+  padding-left: 0.5rem;
+}
+.summary-pending {
+  color: #9f6000;
+  border-left: 0.4rem solid #9f6000;
+  padding-left: 0.5rem;
+}
+.summary-empty {
+  color: #999;
+  border-left: 0.4rem solid #999;
+}
+
+.test-result {
+  padding: 1rem;
+  margin-bottom: 0.25rem;
+}
+.test-result:last-child {
+  border: 0;
+}
+.test-result.passed {
+  background-color: #dff2bf;
+  color: #4f8a10;
+}
+.test-result.failed {
+  background-color: #ffbaba;
+  color: #d8000c;
+}
+.test-result.pending {
+  background-color: #ffdf61;
+  color: #9f6000;
+}
+
+.test-info {
+  display: flex;
+  justify-content: space-between;
+}
+.test-suitename {
+  width: 20%;
+  text-align: left;
+  font-weight: bold;
+  word-break: break-word;
+}
+.test-title {
+  width: 40%;
+  text-align: left;
+  font-style: italic;
+}
+.test-status {
+  width: 20%;
+  text-align: right;
+}
+.test-duration {
+  width: 10%;
+  text-align: right;
+  font-size: 0.75rem;
+}
+
+.failureMessages {
+  padding: 0 1rem;
+  margin-top: 1rem;
+  border-top: 1px dashed #d8000c;
+}
+.failureMessages.suiteFailure {
+  border-top: none;
+}
+.failureMsg {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+.suite-container {
+  margin-bottom: 2rem;
+}
+.suite-container > input[type="checkbox"] {
+  position: absolute;
+  left: -100vw;
+}
+.suite-container label {
+  display: block;
+}
+.suite-container .suite-tests {
+  overflow-y: hidden;
+  height: 0;
+}
+.suite-container > input[type="checkbox"]:checked ~ .suite-tests {
+  height: auto;
+  overflow: visible;
+}
+.suite-info {
+  padding: 1rem;
+  background-color: #eee;
+  color: #777;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+.suite-info:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+.suite-info .suite-path {
+  word-break: break-all;
+  flex-grow: 1;
+  font-family: monospace;
+  font-size: 1rem;
+}
+.suite-info .suite-time {
+  margin-left: 0.5rem;
+  padding: 0.2rem 0.3rem;
+  font-size: 0.75rem;
+}
+.suite-info .suite-time.warn {
+  background-color: #d8000c;
+  color: #fff;
+}
+.suite-info:before {
+  content: "\2303";
+  display: inline-block;
+  margin-right: 0.5rem;
+  transform: rotate(0deg);
+}
+.suite-container > input[type="checkbox"]:checked ~ label .suite-info:before {
+  transform: rotate(180deg);
+}
+
+/* CONSOLE LOGS */
+.suite-consolelog {
+  margin-bottom: 0.25rem;
+  padding: 1rem;
+  background-color: #efefef;
+}
+.suite-consolelog-header {
+  font-weight: bold;
+}
+.suite-consolelog-item {
+  padding: 0.5rem;
+}
+.suite-consolelog-item pre {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.suite-consolelog-item-origin {
+  color: #777;
+  font-weight: bold;
+}
+.suite-consolelog-item-message {
+  color: #000;
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+
+/* OBSOLETE SNAPSHOTS */
+.suite-obsolete-snapshots {
+  margin-bottom: 0.25rem;
+  padding: 1rem;
+  background-color: #ffbaba;
+  color: #d8000c;
+}
+.suite-obsolete-snapshots-header {
+  font-weight: bold;
+}
+.suite-obsolete-snapshots-item {
+  padding: 0.5rem;
+}
+.suite-obsolete-snapshots-item pre {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.suite-obsolete-snapshots-item-message {
+  color: #000;
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+</style></head><body><div class="jesthtml-content"><header><h1 id="title">Snow Ice Test Report</h1></header><div id="metadata-container"><div id="timestamp">Started: 2025-07-11 14:22:33</div><div id="summary"><div id="suite-summary"><div class="summary-total">Suites (5)</div><div class="summary-passed ">3 passed</div><div class="summary-failed ">2 failed</div><div class="summary-pending  summary-empty">0 pending</div></div><div id="test-summary"><div class="summary-total">Tests (32)</div><div class="summary-passed ">21 passed</div><div class="summary-failed ">11 failed</div><div class="summary-pending  summary-empty">0 pending</div></div></div></div><div id="suite-1" class="suite-container"><input id="collapsible-0" type="checkbox" class="toggle" checked="checked"/><label for="collapsible-0"><div class="suite-info"><div class="suite-path">/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js</div><div class="suite-time">0.563s</div></div></label><div class="suite-tests"><div class="test-result failed"><div class="test-info"><div class="test-suitename">Checkout Process</div><div class="test-title">P0: Should complete checkout process with valid information</div><div class="test-status">failed</div><div class="test-duration">0.011s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toContain(expected) // indexOf
+
+Expected substring: "/checkout"
+Received string:    "http://localhost:3000/products/sb-001"
+    at Object.toContain (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:60:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Checkout Process</div><div class="test-title">P1: Should validate shipping information form</div><div class="test-status">failed</div><div class="test-duration">0.003s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toBeGreaterThan(expected)
+
+Expected: &gt; 0
+Received:   0
+    at Object.toBeGreaterThan (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:95:34)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Checkout Process</div><div class="test-title">P1: Order summary should show correct information</div><div class="test-status">failed</div><div class="test-duration">0.002s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toBeGreaterThan(expected)
+
+Matcher error: received value must be a number or bigint
+
+Received has value: undefined
+    at Object.toBeGreaterThan (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:151:22)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Checkout Process</div><div class="test-title">P2: Should not proceed to checkout with empty cart</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Checkout Process</div><div class="test-title">P1: Order confirmation page should display correct information</div><div class="test-status">failed</div><div class="test-duration">0.001s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toBeTruthy()
+
+Received: null
+    at Object.toBeTruthy (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:207:25)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Checkout Process</div><div class="test-title">P1: Should checkout with multiple products</div><div class="test-status">failed</div><div class="test-duration">0.002s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: "order-1752268953927"
+    at Object.toBe (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:263:29)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Checkout Process</div><div class="test-title">P1: Should reject invalid payment information</div><div class="test-status">failed</div><div class="test-duration">0.002s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toBeGreaterThan(expected)
+
+Expected: &gt; 0
+Received:   0
+    at Object.toBeGreaterThan (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:300:34)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre></div></div></div><div class="suite-consolelog"><div class="suite-consolelog-header">Console Log</div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/setup.js:30:13)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:281:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:95:7)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Running in mock mode - no browser will be launched</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at BaseTest.log [as clearCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/BaseTest.js:158:15)
+    at Object.clearCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:32:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:281:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:246:5)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Cleared mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:35:5)</pre><pre class="suite-consolelog-item-message">Navigating to product sb-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as addToCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:165:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:36:5)</pre><pre class="suite-consolelog-item-message">Added Alpine Freestyle Snowboard to mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as navigate] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:40:15)
+    at Object.navigate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:49:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Navigating to cart page in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as proceedToCheckout] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:327:15)
+    at Object.proceedToCheckout (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:56:20)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre><pre class="suite-consolelog-item-message">Proceeding to checkout in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at BaseTest.log [as clearCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/BaseTest.js:158:15)
+    at Object.clearCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:32:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:281:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:246:5)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Cleared mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:35:5)</pre><pre class="suite-consolelog-item-message">Navigating to product sb-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as addToCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:165:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:36:5)</pre><pre class="suite-consolelog-item-message">Added Alpine Freestyle Snowboard to mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as navigate] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:40:15)
+    at Object.navigate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:87:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Navigating to cart page in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as proceedToCheckout] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:327:15)
+    at Object.proceedToCheckout (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:88:20)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre><pre class="suite-consolelog-item-message">Proceeding to checkout in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CheckoutPage.log [as submitShippingInformation] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CheckoutPage.js:167:15)
+    at Object.submitShippingInformation (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:91:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre><pre class="suite-consolelog-item-message">Submitting shipping form in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at BaseTest.log [as clearCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/BaseTest.js:158:15)
+    at Object.clearCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:32:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:281:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:246:5)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Cleared mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:35:5)</pre><pre class="suite-consolelog-item-message">Navigating to product sb-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as addToCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:165:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:36:5)</pre><pre class="suite-consolelog-item-message">Added Alpine Freestyle Snowboard to mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:132:5)</pre><pre class="suite-consolelog-item-message">Navigating to product sb-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as addToCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:165:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:134:5)</pre><pre class="suite-consolelog-item-message">Added Alpine Freestyle Snowboard to mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:136:5)</pre><pre class="suite-consolelog-item-message">Navigating to product bd-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as addToCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:165:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:137:5)</pre><pre class="suite-consolelog-item-message">Added Performance Flex Bindings to mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as navigate] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:40:15)
+    at Object.navigate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:140:20)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre><pre class="suite-consolelog-item-message">Navigating to cart page in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as proceedToCheckout] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:327:15)
+    at Object.proceedToCheckout (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:141:20)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre><pre class="suite-consolelog-item-message">Proceeding to checkout in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at BaseTest.log [as clearCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/BaseTest.js:158:15)
+    at Object.clearCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:32:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:281:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:246:5)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Cleared mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:35:5)</pre><pre class="suite-consolelog-item-message">Navigating to product sb-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as addToCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:165:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:36:5)</pre><pre class="suite-consolelog-item-message">Added Alpine Freestyle Snowboard to mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at BaseTest.log [as clearCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/BaseTest.js:158:15)
+    at Object.clearCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:164:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Cleared mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as navigate] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:40:15)
+    at Object.navigate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:167:20)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre><pre class="suite-consolelog-item-message">Navigating to cart page in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CheckoutPage.log [as navigate] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CheckoutPage.js:71:15)
+    at Object.navigate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:178:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre><pre class="suite-consolelog-item-message">Navigating to checkout page in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CheckoutPage.log [as navigate] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CheckoutPage.js:75:17)
+    at Object.navigate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:178:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre><pre class="suite-consolelog-item-message">Cart is empty, redirecting to cart page</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at BaseTest.log [as clearCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/BaseTest.js:158:15)
+    at Object.clearCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:32:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:281:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:246:5)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Cleared mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:35:5)</pre><pre class="suite-consolelog-item-message">Navigating to product sb-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as addToCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:165:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:36:5)</pre><pre class="suite-consolelog-item-message">Added Alpine Freestyle Snowboard to mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as navigate] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:40:15)
+    at Object.navigate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:195:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Navigating to cart page in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as proceedToCheckout] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:327:15)
+    at Object.proceedToCheckout (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:196:20)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre><pre class="suite-consolelog-item-message">Proceeding to checkout in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CheckoutPage.log [as completeCheckout] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CheckoutPage.js:379:15)
+    at Object.completeCheckout (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:199:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre><pre class="suite-consolelog-item-message">Completing checkout in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CheckoutPage.log [as completeCheckout] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CheckoutPage.js:383:15)
+    at Object.completeCheckout (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:199:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre><pre class="suite-consolelog-item-message">Created mock order order-1752268953925 with 1 items</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at BaseTest.log [as clearCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/BaseTest.js:158:15)
+    at Object.clearCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:32:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:281:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:246:5)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Cleared mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:35:5)</pre><pre class="suite-consolelog-item-message">Navigating to product sb-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as addToCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:165:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:36:5)</pre><pre class="suite-consolelog-item-message">Added Alpine Freestyle Snowboard to mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at BaseTest.log [as clearCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/BaseTest.js:158:15)
+    at Object.clearCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:237:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Cleared mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:240:5)</pre><pre class="suite-consolelog-item-message">Navigating to product sb-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as addToCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:165:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:241:5)</pre><pre class="suite-consolelog-item-message">Added Alpine Freestyle Snowboard to mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:243:5)</pre><pre class="suite-consolelog-item-message">Navigating to product bd-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as addToCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:165:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:244:5)</pre><pre class="suite-consolelog-item-message">Added Performance Flex Bindings to mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:246:5)</pre><pre class="suite-consolelog-item-message">Navigating to product bt-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as addToCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:165:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:247:5)</pre><pre class="suite-consolelog-item-message">Added Comfort Tech Boots to mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as navigate] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:40:15)
+    at Object.navigate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:250:20)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre><pre class="suite-consolelog-item-message">Navigating to cart page in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as proceedToCheckout] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:327:15)
+    at Object.proceedToCheckout (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:257:20)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre><pre class="suite-consolelog-item-message">Proceeding to checkout in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CheckoutPage.log [as completeCheckout] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CheckoutPage.js:379:15)
+    at Object.completeCheckout (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:260:48)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre><pre class="suite-consolelog-item-message">Completing checkout in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CheckoutPage.log [as completeCheckout] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CheckoutPage.js:383:15)
+    at Object.completeCheckout (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:260:48)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre><pre class="suite-consolelog-item-message">Created mock order order-1752268953927 with 3 items</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at BaseTest.log [as clearCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/BaseTest.js:158:15)
+    at Object.clearCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:32:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:281:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:246:5)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Cleared mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:35:5)</pre><pre class="suite-consolelog-item-message">Navigating to product sb-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as addToCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:165:15)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:36:5)</pre><pre class="suite-consolelog-item-message">Added Alpine Freestyle Snowboard to mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as navigate] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:40:15)
+    at Object.navigate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:280:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Navigating to cart page in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as proceedToCheckout] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:327:15)
+    at Object.proceedToCheckout (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:281:20)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre><pre class="suite-consolelog-item-message">Proceeding to checkout in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CheckoutPage.log [as fillShippingInformation] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CheckoutPage.js:114:15)
+    at Object.fillShippingInformation (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:284:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre><pre class="suite-consolelog-item-message">Filling shipping form in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CheckoutPage.log [as submitShippingInformation] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CheckoutPage.js:167:15)
+    at Object.submitShippingInformation (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:285:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre><pre class="suite-consolelog-item-message">Submitting shipping form in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CheckoutPage.log [as fillPaymentInformation] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CheckoutPage.js:192:15)
+    at Object.fillPaymentInformation (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:288:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)</pre><pre class="suite-consolelog-item-message">Filling payment form in mock mode</pre></div></div></div><div id="suite-2" class="suite-container"><input id="collapsible-1" type="checkbox" class="toggle" checked="checked"/><label for="collapsible-1"><div class="suite-info"><div class="suite-path">/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js</div><div class="suite-time">0.123s</div></div></label><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Performance Tests</div><div class="test-title">P1: Page load times should meet performance thresholds</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Performance Tests</div><div class="test-title">P1: API response times should meet performance thresholds</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Performance Tests</div><div class="test-title">P1: User interaction times should meet performance thresholds</div><div class="test-status">passed</div><div class="test-duration">0s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Performance Tests</div><div class="test-title">P0: Checkout flow should meet performance thresholds</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Performance Tests</div><div class="test-title">P2: Generate performance report</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div></div><div class="suite-consolelog"><div class="suite-consolelog-header">Console Log</div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/setup.js:30:13)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:281:40)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:95:7)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Running in mock mode - no browser will be launched</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:50:13)</pre><pre class="suite-consolelog-item-message">Home page load time: 0ms</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:58:13)</pre><pre class="suite-consolelog-item-message">Products page load time: 0ms</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at /Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:63:7
+    at PerformanceHelper.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceHelper.js:43:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:62:35)</pre><pre class="suite-consolelog-item-message">Navigating to product sb-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:66:13)</pre><pre class="suite-consolelog-item-message">Product detail page load time: 1ms</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as navigate] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:40:15)
+    at navigate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:71:22)
+    at PerformanceHelper.navigationFn [as measurePageLoad] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceHelper.js:43:11)
+    at Object.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:70:50)</pre><pre class="suite-consolelog-item-message">Navigating to cart page in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:74:13)</pre><pre class="suite-consolelog-item-message">Cart page load time: 0ms</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at /Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:80:7
+    at PerformanceHelper.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceHelper.js:43:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:78:30)</pre><pre class="suite-consolelog-item-message">Navigating to product sb-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as addToCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:165:15)
+    at /Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:81:7
+    at PerformanceHelper.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceHelper.js:43:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:78:30)</pre><pre class="suite-consolelog-item-message">Added Alpine Freestyle Snowboard to mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CheckoutPage.log [as navigate] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CheckoutPage.js:71:15)
+    at navigate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:82:26)
+    at PerformanceHelper.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceHelper.js:43:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:78:30)</pre><pre class="suite-consolelog-item-message">Navigating to checkout page in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:85:13)</pre><pre class="suite-consolelog-item-message">Checkout page load time: 0ms</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:102:13)</pre><pre class="suite-consolelog-item-message">Products API response time: 0ms</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:110:13)</pre><pre class="suite-consolelog-item-message">Product by ID API response time: 0ms</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:124:13)</pre><pre class="suite-consolelog-item-message">Cart API response time: 0ms</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:132:13)</pre><pre class="suite-consolelog-item-message">Orders API response time: 0ms</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:145:5)</pre><pre class="suite-consolelog-item-message">Navigating to product sb-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as addToCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:165:15)
+    at /Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:148:7
+    at PerformanceHelper.measureInteraction (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceHelper.js:94:5)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:147:27)</pre><pre class="suite-consolelog-item-message">Added Alpine Freestyle Snowboard to mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:151:13)</pre><pre class="suite-consolelog-item-message">Add to cart interaction time: 0ms</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as navigate] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:40:15)
+    at Object.navigate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:155:20)</pre><pre class="suite-consolelog-item-message">Navigating to cart page in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as updateItemQuantity] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:128:15)
+    at updateItemQuantity (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:158:22)
+    at PerformanceHelper.interactionFn [as measureInteraction] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceHelper.js:94:11)
+    at Object.measureInteraction (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:157:56)</pre><pre class="suite-consolelog-item-message">Updated mock cart item sb-001 quantity to 3</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:161:13)</pre><pre class="suite-consolelog-item-message">Update quantity interaction time: 0ms</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at BaseTest.log [as clearCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/BaseTest.js:158:15)
+    at Object.clearCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:174:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Cleared mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:177:5)</pre><pre class="suite-consolelog-item-message">Navigating to product sb-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as addToCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:165:15)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:178:5)</pre><pre class="suite-consolelog-item-message">Added Alpine Freestyle Snowboard to mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as navigate] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:40:15)
+    at Object.navigate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:181:20)</pre><pre class="suite-consolelog-item-message">Navigating to cart page in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as proceedToCheckout] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:327:15)
+    at Object.proceedToCheckout (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:182:20)</pre><pre class="suite-consolelog-item-message">Proceeding to checkout in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CheckoutPage.log [as completeCheckout] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CheckoutPage.js:379:15)
+    at completeCheckout (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:189:26)
+    at PerformanceHelper.interactionFn [as measureInteraction] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceHelper.js:94:11)
+    at Object.measureInteraction (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:188:50)</pre><pre class="suite-consolelog-item-message">Completing checkout in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CheckoutPage.log [as completeCheckout] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CheckoutPage.js:383:15)
+    at completeCheckout (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:189:26)
+    at PerformanceHelper.interactionFn [as measureInteraction] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceHelper.js:94:11)
+    at Object.measureInteraction (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:188:50)</pre><pre class="suite-consolelog-item-message">Created mock order order-1752268954069 with 1 items</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:192:13)</pre><pre class="suite-consolelog-item-message">Complete checkout flow time: 0ms</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:205:13)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Performance Report Summary:</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:206:13)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Page Loads: 100.00% meet thresholds</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:207:13)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">API Calls: 100.00% meet thresholds</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:208:13)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Interactions: 100.00% meet thresholds</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:209:13)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Overall: 100.00% meet thresholds</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:223:13)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Performance report saved to: /Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/reports/performance-report.json</pre></div></div></div><div id="suite-3" class="suite-container"><input id="collapsible-2" type="checkbox" class="toggle" checked="checked"/><label for="collapsible-2"><div class="suite-info"><div class="suite-path">/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js</div><div class="suite-time">0.106s</div></div></label><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Shopping Cart</div><div class="test-title">P0: Should add product to cart from product detail page</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Shopping Cart</div><div class="test-title">P0: Should update product quantity in cart</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Shopping Cart</div><div class="test-title">P0: Should remove product from cart</div><div class="test-status">passed</div><div class="test-duration">0s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Shopping Cart</div><div class="test-title">P1: Cart should persist across page refreshes</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Shopping Cart</div><div class="test-title">P1: Cart API operations should work correctly</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Shopping Cart</div><div class="test-title">P1: Buy Now functionality should work correctly</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Shopping Cart</div><div class="test-title">P1: Cart calculations should be correct</div><div class="test-status">passed</div><div class="test-duration">0s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Shopping Cart</div><div class="test-title">P2: Empty cart should show appropriate message</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div></div><div class="suite-consolelog"><div class="suite-consolelog-header">Console Log</div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/setup.js:30:13)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:281:40)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:95:7)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Running in mock mode - no browser will be launched</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at BaseTest.log [as clearCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/BaseTest.js:158:15)
+    at Object.clearCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:25:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:281:40)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:246:5)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Cleared mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:43:5)</pre><pre class="suite-consolelog-item-message">Navigating to product sb-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as addToCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:165:15)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:49:5)</pre><pre class="suite-consolelog-item-message">Added Alpine Freestyle Snowboard to mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as navigate] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:40:15)
+    at Object.navigate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:56:20)</pre><pre class="suite-consolelog-item-message">Navigating to cart page in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at BaseTest.log [as clearCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/BaseTest.js:158:15)
+    at Object.clearCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:25:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:281:40)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:246:5)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Cleared mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:77:5)</pre><pre class="suite-consolelog-item-message">Navigating to product sb-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as addToCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:165:15)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:78:5)</pre><pre class="suite-consolelog-item-message">Added Alpine Freestyle Snowboard to mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as navigate] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:40:15)
+    at Object.navigate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:81:20)</pre><pre class="suite-consolelog-item-message">Navigating to cart page in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as updateItemQuantity] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:128:15)
+    at Object.updateItemQuantity (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:88:20)</pre><pre class="suite-consolelog-item-message">Updated mock cart item sb-001 quantity to 3</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:98:5)</pre><pre class="suite-consolelog-item-message">Navigating to product sb-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at BaseTest.log [as clearCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/BaseTest.js:158:15)
+    at Object.clearCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:25:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:281:40)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:246:5)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Cleared mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:117:5)</pre><pre class="suite-consolelog-item-message">Navigating to product sb-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as addToCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:165:15)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:118:5)</pre><pre class="suite-consolelog-item-message">Added Alpine Freestyle Snowboard to mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as navigate] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:40:15)
+    at Object.navigate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:121:20)</pre><pre class="suite-consolelog-item-message">Navigating to cart page in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as removeItem] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:234:15)
+    at Object.removeItem (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:128:20)</pre><pre class="suite-consolelog-item-message">Removed item sb-001 from mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at BaseTest.log [as clearCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/BaseTest.js:158:15)
+    at Object.clearCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:25:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:281:40)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:246:5)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Cleared mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:149:5)</pre><pre class="suite-consolelog-item-message">Navigating to product sb-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as addToCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:165:15)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:150:5)</pre><pre class="suite-consolelog-item-message">Added Alpine Freestyle Snowboard to mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as navigate] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:40:15)
+    at Object.navigate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:153:20)</pre><pre class="suite-consolelog-item-message">Navigating to cart page in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at BaseTest.log [as clearCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/BaseTest.js:158:15)
+    at Object.clearCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:25:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:281:40)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:246:5)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Cleared mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at BaseTest.log [as clearCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/BaseTest.js:158:15)
+    at Object.clearCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:25:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:281:40)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:246:5)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Cleared mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:231:5)</pre><pre class="suite-consolelog-item-message">Navigating to product sb-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as buyNow] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:206:15)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:234:5)</pre><pre class="suite-consolelog-item-message">Added Alpine Freestyle Snowboard to mock cart via Buy Now</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as navigate] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:40:15)
+    at Object.navigate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:241:20)</pre><pre class="suite-consolelog-item-message">Navigating to cart page in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at BaseTest.log [as clearCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/BaseTest.js:158:15)
+    at Object.clearCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:25:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:281:40)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:246:5)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Cleared mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:261:5)</pre><pre class="suite-consolelog-item-message">Navigating to product sb-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as addToCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:165:15)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:262:5)</pre><pre class="suite-consolelog-item-message">Added Alpine Freestyle Snowboard to mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:264:5)</pre><pre class="suite-consolelog-item-message">Navigating to product bd-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as addToCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:165:15)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:265:5)</pre><pre class="suite-consolelog-item-message">Added Performance Flex Bindings to mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as navigate] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:40:15)
+    at Object.navigate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:268:20)</pre><pre class="suite-consolelog-item-message">Navigating to cart page in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at BaseTest.log [as clearCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/BaseTest.js:158:15)
+    at Object.clearCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:25:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:281:40)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:246:5)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Cleared mock cart</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as navigate] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:40:15)
+    at Object.navigate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:303:20)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Navigating to cart page in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at CartPage.log [as continueShopping] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/CartPage.js:360:15)
+    at Object.continueShopping (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:314:20)</pre><pre class="suite-consolelog-item-message">Continuing shopping in mock mode</pre></div></div></div><div id="suite-4" class="suite-container"><input id="collapsible-3" type="checkbox" class="toggle" checked="checked"/><label for="collapsible-3"><div class="suite-info"><div class="suite-path">/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/api.test.js</div><div class="suite-time">0.109s</div></div></label><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">API Endpoints</div><div class="test-title">P0: Products API should return correct data</div><div class="test-status">passed</div><div class="test-duration">0s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">API Endpoints</div><div class="test-title">P0: Cart API should support CRUD operations</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">API Endpoints</div><div class="test-title">P0: Orders API should create and retrieve orders</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">API Endpoints</div><div class="test-title">P1: Orders API should update order status</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">API Endpoints</div><div class="test-title">P1: API should handle errors correctly</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">API Endpoints</div><div class="test-title">P2: API should respond within acceptable time</div><div class="test-status">passed</div><div class="test-duration">0s</div></div></div></div><div class="suite-consolelog"><div class="suite-consolelog-header">Console Log</div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/setup.js:30:13)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:281:40)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:95:7)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Running in mock mode - no browser will be launched</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ApiHelper.error [as getProductById] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/ApiHelper.js:46:15)
+    at Object.getProductById (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/api.test.js:200:23)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Error fetching product non-existent-id: Product not found</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ApiHelper.error [as getCart] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/ApiHelper.js:82:15)
+    at Object.getCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/api.test.js:210:23)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Error fetching cart: Cart not found</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ApiHelper.error [as getOrders] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/ApiHelper.js:161:15)
+    at Object.getOrders (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/api.test.js:220:23)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:316:40)
+    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:252:3)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Error fetching orders: Order not found</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ApiHelper.error [as updateOrderStatus] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/ApiHelper.js:198:15)
+    at Object.updateOrderStatus (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/api.test.js:238:23)</pre><pre class="suite-consolelog-item-message">Error updating order status: Invalid status</pre></div></div></div><div id="suite-5" class="suite-container"><input id="collapsible-4" type="checkbox" class="toggle" checked="checked"/><label for="collapsible-4"><div class="suite-info"><div class="suite-path">/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js</div><div class="suite-time">0.048s</div></div></label><div class="suite-tests"><div class="test-result failed"><div class="test-info"><div class="test-suitename">Product Browsing</div><div class="test-title">P0: Should navigate to all product categories from home page</div><div class="test-status">failed</div><div class="test-duration">0s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+Expected: &gt;= 4
+Received:    0
+    at Object.toBeGreaterThanOrEqual (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:42:31)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Product Browsing</div><div class="test-title">P0: Should view product details from category page</div><div class="test-status">failed</div><div class="test-duration">0s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toBeGreaterThan(expected)
+
+Matcher error: received value must be a number or bigint
+
+Received has type:  array
+Received has value: []
+    at Object.toBeGreaterThan (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:80:26)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Product Browsing</div><div class="test-title">P1: Should display related products on product detail page</div><div class="test-status">failed</div><div class="test-duration">0.001s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toBeGreaterThan(expected)
+
+Matcher error: received value must be a number or bigint
+
+Received has type:  array
+Received has value: []
+    at Object.toBeGreaterThan (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:123:34)</pre></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Product Browsing</div><div class="test-title">P1: Product API should return correct data</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Product Browsing</div><div class="test-title">P2: Out of stock products should show correct status</div><div class="test-status">failed</div><div class="test-duration">0s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: Failed to click product: Product index 0 out of bounds
+    at ProductsPage.clickProduct (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductsPage.js:138:13)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:191:5)</pre></div></div><div class="test-result failed"><div class="test-info"><div class="test-suitename">Product Browsing</div><div class="test-title">P1: Product images should load correctly</div><div class="test-status">failed</div><div class="test-duration">0.001s</div></div><div class="failureMessages"> <pre class="failureMsg">Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: null
+    at Object.toBe (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:232:25)</pre></div></div></div><div class="suite-consolelog"><div class="suite-consolelog-header">Console Log</div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at Object.log (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/setup.js:30:13)
+    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)
+    at _callCircusHook (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:281:40)
+    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:95:7)
+    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)
+    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)
+    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)</pre><pre class="suite-consolelog-item-message">Running in mock mode - no browser will be launched</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:115:5)</pre><pre class="suite-consolelog-item-message">Navigating to product sb-001 in mock mode</pre></div><div class="suite-consolelog-item"><pre class="suite-consolelog-item-origin">    at ProductDetailPage.log [as navigateToProduct] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:46:15)
+    at Object.&lt;anonymous&gt; (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:221:5)</pre><pre class="suite-consolelog-item-message">Navigating to product sb-001 in mock mode</pre></div></div></div></div></body></html>

@@ -1,0 +1,218 @@
+# Best Practices Framework – E-commerce Testing Rules
+
+# -----------------------------------------------------------------------------
+# WORKFLOW
+# -----------------------------------------------------------------------------
+workflow:
+  - step: 1
+    id: scan-test-files
+    description: "Recursively find all test files under ${TEST_DIRECTORY} and store the full paths in ALL_FILES."
+
+  - step: 2
+    id: parse-rules
+    description: "Load this file and store rule definitions (including any 'quick_pattern') in RULES."
+
+  - step: 3
+    id: initial-triage-scan
+    description: |
+      For every file in ALL_FILES and for each violation definition in RULES that has a 'quick_pattern':
+        • Use a fast grep-like mechanism to identify files potentially matching its 'quick_pattern'.
+        • Store these as POTENTIALLY_VIOLATING_FILES[<violation_id>].
+      
+  - step: 4
+    id: detailed-scan-violations
+    description: |
+      For each violation_id defined in RULES:
+        • Determine TARGET_FILES:
+          If POTENTIALLY_VIOLATING_FILES[<violation_id>] exists (from step 3), use it.
+          Otherwise exit
+        • For every file in TARGET_FILES:
+          • Scan the file according to its rule's parameters
+          • Record results for this violation_id: RESULTS[<violation_id>] = { violated: [files], clean: [files] }
+
+  - step: 5
+    id: validate-completeness
+    description: |
+      Ensure every file in POTENTIALLY_VIOLATING_FILES was considered against every violation.
+      If scan failures occurred, prompt the user that the scan result is incomplete.
+
+  - step: 6
+    id: final-report
+    description: "Generate a summary table per rule plus a one-line overall summary."
+
+# -----------------------------------------------------------------------------
+# COMMON CONFIGURATION
+# -----------------------------------------------------------------------------
+common: &common
+  targets: "**/*Test.js"
+  severity: error
+  analysis_instructions:
+    - "View each file completely; do not assume unseen code."
+    - "Process every test case individually when checking pattern sequences."
+    - "Ensure proper context is maintained when analyzing test patterns."
+
+# -----------------------------------------------------------------------------
+# RULE DEFINITIONS
+# -----------------------------------------------------------------------------
+rules:
+  - <<: *common
+    id: wait-mechanism-violations
+    name: "Wait Mechanism Violations"
+    description: "Improper wait mechanisms in e-commerce tests."
+    scan_method: test-level
+    violations:
+      - id: avoid-fixed-timeouts
+        description: "Avoid using fixed timeouts/sleeps."
+        quick_pattern: "setTimeout|sleep"
+        pattern: "(setTimeout\\(.*?\\)|sleep\\(.*?\\))"
+        detection_notes: "Detect all variants of setTimeout() or sleep() regardless of parameters."
+    recommended_fixes:
+      - |
+        Use explicit wait with conditional checks:
+        ```javascript
+        await page.waitForSelector('.product-card', { visible: true });
+        ```
+      - |
+        Use waitForFunction for complex conditions:
+        ```javascript
+        await page.waitForFunction(() => document.querySelectorAll('.cart-item').length > 0);
+        ```
+
+  - <<: *common
+    id: cart-validation-violations
+    name: "Cart Validation Violations"
+    description: "Improper cart validation techniques in tests."
+    scan_method: test-level
+    violations:
+      - id: missing-cart-verification
+        description: "Missing verification after cart operations."
+        quick_pattern: "addToCart|updateCart"
+        pattern_sequence:
+          - "(addToCart|updateQuantity|removeFromCart)"
+          - "!verifyCart"
+        within_test: true
+        detection_notes: |
+          Examine tests for cart operations that don't verify the cart state afterward.
+          
+          Example of violation:
+          ```javascript
+          test('adds product to cart', async () => {
+            await addToCart(productId, 2);
+            // Missing verification of cart state
+          });
+          ```
+    recommended_fixes:
+      - |
+        Add proper cart verification:
+        ```javascript
+        test('adds product to cart', async () => {
+          await addToCart(productId, 2);
+          const cartItems = await getCartItems();
+          expect(cartItems).toContainEqual(expect.objectContaining({
+            productId,
+            quantity: 2
+          }));
+        });
+        ```
+
+  - <<: *common
+    id: api-response-validation
+    name: "API Response Validation Violations"
+    description: "Inadequate API response validation in tests"
+    scan_method: test-level
+    violations:
+      - id: unvalidated-api-response
+        description: "API calls without proper response validation"
+        quick_pattern: "fetch|axios"
+        pattern_sequence:
+          - "(fetch\\(|axios\\.get|axios\\.post)"
+          - "!(expect|assert)"
+        within_test: true
+        detection_notes: |
+          Detects API calls that don't validate the response structure or status.
+          
+    recommended_fixes:
+      - |
+        Add proper response validation:
+        ```javascript
+        test('fetches products', async () => {
+          const response = await fetch('/api/products');
+          expect(response.status).toBe(200);
+          const data = await response.json();
+          expect(data).toHaveLength(greaterThan(0));
+          expect(data[0]).toHaveProperty('id');
+          expect(data[0]).toHaveProperty('name');
+        });
+        ```
+
+  - <<: *common
+    id: checkout-flow-validation
+    name: "Checkout Flow Validation Violations"
+    description: "Incomplete checkout flow testing"
+    scan_method: test-level
+    violations:
+      - id: incomplete-checkout-flow
+        description: "Checkout tests that don't verify order confirmation"
+        quick_pattern: "checkout|placeOrder"
+        pattern_sequence:
+          - "(checkout|placeOrder|submitOrder)"
+          - "!verifyOrderConfirmation"
+        within_test: true
+        detection_notes: |
+          Detects checkout tests that don't verify the order confirmation page or receipt.
+          
+    recommended_fixes:
+      - |
+        Add order confirmation verification:
+        ```javascript
+        test('completes checkout process', async () => {
+          await fillShippingInfo(testAddress);
+          await submitOrder();
+          // Add verification
+          const confirmationElement = await page.waitForSelector('.order-confirmation');
+          const orderId = await confirmationElement.evaluate(el => el.dataset.orderId);
+          expect(orderId).toBeTruthy();
+        });
+        ```
+
+  - <<: *common
+    id: product-data-validation
+    name: "Product Data Validation Violations"
+    description: "Inadequate product data validation in tests"
+    scan_method: test-level
+    violations:
+      - id: missing-product-verification
+        description: "Missing verification of product details"
+        quick_pattern: "product|productDetail"
+        pattern_sequence:
+          - "(viewProduct|getProductDetails)"
+          - "!(expect\\(.*?name|expect\\(.*?price|expect\\(.*?image)"
+        within_test: true
+        detection_notes: |
+          Detects product detail tests that don't verify essential product information.
+          
+    recommended_fixes:
+      - |
+        Add comprehensive product verification:
+        ```javascript
+        test('displays product details correctly', async () => {
+          await navigateToProduct(productId);
+          const productData = await getDisplayedProductData();
+          expect(productData.name).toBe(expectedProduct.name);
+          expect(productData.price).toBe(expectedProduct.price);
+          expect(productData.image).toContain(expectedProduct.imageUrl);
+          expect(productData.description).toBeTruthy();
+        });
+        ```
+
+# -----------------------------------------------------------------------------
+# EXECUTION GUIDELINES
+# -----------------------------------------------------------------------------
+execution:
+  view_strategy: complete-file
+  search_strategy: test-context
+  pattern_match_verification: manual-review
+  file_processing:
+    - "View each test file completely."
+    - "Process each test case individually for context-sensitive violations."
+    - "Ensure proper detection of test patterns within appropriate boundaries."

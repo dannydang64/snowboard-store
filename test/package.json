@@ -1,0 +1,56 @@
+{
+  "name": "snow-ice-tests",
+  "version": "1.0.0",
+  "description": "Test automation framework for Snow Ice e-commerce application",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:product": "jest -t 'Product'",
+    "test:cart": "jest -t 'Cart'",
+    "test:checkout": "jest -t 'Checkout'",
+    "test:api": "jest -t 'API'",
+    "test:all": "jest --runInBand",
+    "test:parallel": "jest --maxWorkers=4",
+    "report": "jest --reporters=default --reporters=jest-html-reporter"
+  },
+  "keywords": [
+    "e-commerce",
+    "testing",
+    "automation",
+    "jest",
+    "puppeteer"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "axios": "^1.4.0",
+    "babel-jest": "^29.5.0",
+    "faker": "^5.5.3",
+    "jest": "^29.5.0",
+    "jest-environment-node": "^30.0.4",
+    "jest-html-reporter": "^3.10.0",
+    "jest-puppeteer": "^9.0.2",
+    "puppeteer": "^20.7.3"
+  },
+  "jest": {
+    "testTimeout": 30000,
+    "testEnvironment": "./framework/CustomEnvironment.js",
+    "setupFilesAfterEnv": [
+      "./framework/setup.js"
+    ],
+    "reporters": [
+      "default",
+      [
+        "jest-html-reporter",
+        {
+          "pageTitle": "Snow Ice Test Report",
+          "outputPath": "./reports/test-report.html",
+          "includeFailureMsg": true,
+          "includeConsoleLog": true
+        }
+      ]
+    ]
+  }
+}

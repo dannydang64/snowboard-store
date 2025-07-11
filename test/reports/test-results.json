@@ -1,0 +1,338 @@
+{
+  "summary": {
+    "total": 32,
+    "passed": 21,
+    "failed": 11,
+    "skipped": 0,
+    "passRate": "65.63"
+  },
+  "duration": {
+    "startTime": "2025-07-11T21:22:33.343Z",
+    "endTime": null,
+    "totalMs": 949
+  },
+  "categoryResults": {
+    "product": {
+      "passed": 1,
+      "failed": 5,
+      "skipped": 0
+    },
+    "cart": {
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0
+    },
+    "checkout": {
+      "passed": 1,
+      "failed": 6,
+      "skipped": 0
+    },
+    "api": {
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "priorityResults": {
+    "P0": {
+      "passed": 7,
+      "failed": 3,
+      "total": 10
+    },
+    "P1": {
+      "passed": 10,
+      "failed": 7,
+      "total": 17
+    },
+    "P2": {
+      "passed": 4,
+      "failed": 1,
+      "total": 5
+    }
+  },
+  "tests": {
+    "passed": [
+      {
+        "name": "P2: Should not proceed to checkout with empty cart",
+        "status": "passed",
+        "duration": 1,
+        "category": "checkout",
+        "priority": "P2",
+        "failureMessages": []
+      },
+      {
+        "name": "P1: Page load times should meet performance thresholds",
+        "status": "passed",
+        "duration": 3,
+        "category": "other",
+        "priority": "P1",
+        "failureMessages": []
+      },
+      {
+        "name": "P1: API response times should meet performance thresholds",
+        "status": "passed",
+        "duration": 1,
+        "category": "other",
+        "priority": "P1",
+        "failureMessages": []
+      },
+      {
+        "name": "P1: User interaction times should meet performance thresholds",
+        "status": "passed",
+        "duration": 0,
+        "category": "other",
+        "priority": "P1",
+        "failureMessages": []
+      },
+      {
+        "name": "P0: Checkout flow should meet performance thresholds",
+        "status": "passed",
+        "duration": 1,
+        "category": "other",
+        "priority": "P0",
+        "failureMessages": []
+      },
+      {
+        "name": "P2: Generate performance report",
+        "status": "passed",
+        "duration": 3,
+        "category": "other",
+        "priority": "P2",
+        "failureMessages": []
+      },
+      {
+        "name": "P0: Should add product to cart from product detail page",
+        "status": "passed",
+        "duration": 3,
+        "category": "cart",
+        "priority": "P0",
+        "failureMessages": []
+      },
+      {
+        "name": "P0: Should update product quantity in cart",
+        "status": "passed",
+        "duration": 1,
+        "category": "cart",
+        "priority": "P0",
+        "failureMessages": []
+      },
+      {
+        "name": "P0: Should remove product from cart",
+        "status": "passed",
+        "duration": 0,
+        "category": "cart",
+        "priority": "P0",
+        "failureMessages": []
+      },
+      {
+        "name": "P1: Cart should persist across page refreshes",
+        "status": "passed",
+        "duration": 1,
+        "category": "cart",
+        "priority": "P1",
+        "failureMessages": []
+      },
+      {
+        "name": "P1: Cart API operations should work correctly",
+        "status": "passed",
+        "duration": 2,
+        "category": "cart",
+        "priority": "P1",
+        "failureMessages": []
+      },
+      {
+        "name": "P1: Buy Now functionality should work correctly",
+        "status": "passed",
+        "duration": 1,
+        "category": "cart",
+        "priority": "P1",
+        "failureMessages": []
+      },
+      {
+        "name": "P1: Cart calculations should be correct",
+        "status": "passed",
+        "duration": 0,
+        "category": "cart",
+        "priority": "P1",
+        "failureMessages": []
+      },
+      {
+        "name": "P2: Empty cart should show appropriate message",
+        "status": "passed",
+        "duration": 1,
+        "category": "cart",
+        "priority": "P2",
+        "failureMessages": []
+      },
+      {
+        "name": "P0: Products API should return correct data",
+        "status": "passed",
+        "duration": 0,
+        "category": "api",
+        "priority": "P0",
+        "failureMessages": []
+      },
+      {
+        "name": "P0: Cart API should support CRUD operations",
+        "status": "passed",
+        "duration": 1,
+        "category": "api",
+        "priority": "P0",
+        "failureMessages": []
+      },
+      {
+        "name": "P0: Orders API should create and retrieve orders",
+        "status": "passed",
+        "duration": 4,
+        "category": "api",
+        "priority": "P0",
+        "failureMessages": []
+      },
+      {
+        "name": "P1: Orders API should update order status",
+        "status": "passed",
+        "duration": 1,
+        "category": "api",
+        "priority": "P1",
+        "failureMessages": []
+      },
+      {
+        "name": "P1: API should handle errors correctly",
+        "status": "passed",
+        "duration": 4,
+        "category": "api",
+        "priority": "P1",
+        "failureMessages": []
+      },
+      {
+        "name": "P2: API should respond within acceptable time",
+        "status": "passed",
+        "duration": 0,
+        "category": "api",
+        "priority": "P2",
+        "failureMessages": []
+      },
+      {
+        "name": "P1: Product API should return correct data",
+        "status": "passed",
+        "duration": 1,
+        "category": "product",
+        "priority": "P1",
+        "failureMessages": []
+      }
+    ],
+    "failed": [
+      {
+        "name": "P0: Should complete checkout process with valid information",
+        "status": "failed",
+        "duration": 11,
+        "category": "checkout",
+        "priority": "P0",
+        "failureMessages": [
+          "Error: expect(received).toContain(expected) // indexOf\n\nExpected substring: \"/checkout\"\nReceived string:    \"http://localhost:3000/products/sb-001\"\n    at Object.toContain (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:60:24)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)"
+        ]
+      },
+      {
+        "name": "P1: Should validate shipping information form",
+        "status": "failed",
+        "duration": 3,
+        "category": "checkout",
+        "priority": "P1",
+        "failureMessages": [
+          "Error: expect(received).toBeGreaterThan(expected)\n\nExpected: > 0\nReceived:   0\n    at Object.toBeGreaterThan (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:95:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)"
+        ]
+      },
+      {
+        "name": "P1: Order summary should show correct information",
+        "status": "failed",
+        "duration": 2,
+        "category": "checkout",
+        "priority": "P1",
+        "failureMessages": [
+          "Error: expect(received).toBeGreaterThan(expected)\n\nMatcher error: received value must be a number or bigint\n\nReceived has value: undefined\n    at Object.toBeGreaterThan (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:151:22)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)"
+        ]
+      },
+      {
+        "name": "P1: Order confirmation page should display correct information",
+        "status": "failed",
+        "duration": 1,
+        "category": "checkout",
+        "priority": "P1",
+        "failureMessages": [
+          "Error: expect(received).toBeTruthy()\n\nReceived: null\n    at Object.toBeTruthy (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:207:25)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)"
+        ]
+      },
+      {
+        "name": "P1: Should checkout with multiple products",
+        "status": "failed",
+        "duration": 2,
+        "category": "checkout",
+        "priority": "P1",
+        "failureMessages": [
+          "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: \"order-1752268953927\"\n    at Object.toBe (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:263:29)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)"
+        ]
+      },
+      {
+        "name": "P1: Should reject invalid payment information",
+        "status": "failed",
+        "duration": 2,
+        "category": "checkout",
+        "priority": "P1",
+        "failureMessages": [
+          "Error: expect(received).toBeGreaterThan(expected)\n\nExpected: > 0\nReceived:   0\n    at Object.toBeGreaterThan (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:300:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)"
+        ]
+      },
+      {
+        "name": "P0: Should navigate to all product categories from home page",
+        "status": "failed",
+        "duration": 0,
+        "category": "product",
+        "priority": "P0",
+        "failureMessages": [
+          "Error: expect(received).toBeGreaterThanOrEqual(expected)\n\nExpected: >= 4\nReceived:    0\n    at Object.toBeGreaterThanOrEqual (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:42:31)"
+        ]
+      },
+      {
+        "name": "P0: Should view product details from category page",
+        "status": "failed",
+        "duration": 0,
+        "category": "product",
+        "priority": "P0",
+        "failureMessages": [
+          "Error: expect(received).toBeGreaterThan(expected)\n\nMatcher error: received value must be a number or bigint\n\nReceived has type:  array\nReceived has value: []\n    at Object.toBeGreaterThan (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:80:26)"
+        ]
+      },
+      {
+        "name": "P1: Should display related products on product detail page",
+        "status": "failed",
+        "duration": 1,
+        "category": "product",
+        "priority": "P1",
+        "failureMessages": [
+          "Error: expect(received).toBeGreaterThan(expected)\n\nMatcher error: received value must be a number or bigint\n\nReceived has type:  array\nReceived has value: []\n    at Object.toBeGreaterThan (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:123:34)"
+        ]
+      },
+      {
+        "name": "P2: Out of stock products should show correct status",
+        "status": "failed",
+        "duration": 0,
+        "category": "product",
+        "priority": "P2",
+        "failureMessages": [
+          "Error: Failed to click product: Product index 0 out of bounds\n    at ProductsPage.clickProduct (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductsPage.js:138:13)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:191:5)"
+        ]
+      },
+      {
+        "name": "P1: Product images should load correctly",
+        "status": "failed",
+        "duration": 1,
+        "category": "product",
+        "priority": "P1",
+        "failureMessages": [
+          "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: null\n    at Object.toBe (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:232:25)"
+        ]
+      }
+    ],
+    "skipped": []
+  }
+}

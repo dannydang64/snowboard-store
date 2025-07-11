@@ -1,0 +1,54 @@
+{
+  "timestamp": "2025-07-11T21:22:34.420Z",
+  "duration": 1.789,
+  "exitCode": 1,
+  "testSuite": null,
+  "parallel": false,
+  "headless": true,
+  "results": {
+    "total": 32,
+    "passed": 21,
+    "failed": 11,
+    "skipped": 0,
+    "passRate": "65.63"
+  },
+  "categoryResults": {
+    "product": {
+      "passed": 1,
+      "failed": 5,
+      "skipped": 0
+    },
+    "cart": {
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0
+    },
+    "checkout": {
+      "passed": 1,
+      "failed": 6,
+      "skipped": 0
+    },
+    "api": {
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "priorityResults": {
+    "P0": {
+      "passed": 7,
+      "failed": 3,
+      "total": 10
+    },
+    "P1": {
+      "passed": 10,
+      "failed": 7,
+      "total": 17
+    },
+    "P2": {
+      "passed": 4,
+      "failed": 1,
+      "total": 5
+    }
+  }
+}

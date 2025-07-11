@@ -1,0 +1,128 @@
+{
+  "summary": {
+    "pageLoads": {
+      "thresholdsMet": 5,
+      "thresholdsTotal": 5,
+      "passRate": "100.00"
+    },
+    "apiCalls": {
+      "thresholdsMet": 4,
+      "thresholdsTotal": 4,
+      "passRate": "100.00"
+    },
+    "interactions": {
+      "thresholdsMet": 3,
+      "thresholdsTotal": 3,
+      "passRate": "100.00"
+    },
+    "overall": {
+      "thresholdsMet": 12,
+      "thresholdsTotal": 12,
+      "passRate": "100.00"
+    }
+  },
+  "metrics": {
+    "pageLoads": {
+      "home": {
+        "average": 0,
+        "min": 0,
+        "max": 0,
+        "count": 1,
+        "threshold": 1500,
+        "meetsThreshold": true
+      },
+      "product": {
+        "average": 0,
+        "min": 0,
+        "max": 0,
+        "count": 1,
+        "threshold": 1000,
+        "meetsThreshold": true
+      },
+      "productDetail": {
+        "average": 1,
+        "min": 1,
+        "max": 1,
+        "count": 1,
+        "threshold": "N/A",
+        "meetsThreshold": true
+      },
+      "cart": {
+        "average": 0,
+        "min": 0,
+        "max": 0,
+        "count": 1,
+        "threshold": 800,
+        "meetsThreshold": true
+      },
+      "checkout": {
+        "average": 0,
+        "min": 0,
+        "max": 0,
+        "count": 1,
+        "threshold": 1200,
+        "meetsThreshold": true
+      }
+    },
+    "apiCalls": {
+      "products": {
+        "average": 0,
+        "min": 0,
+        "max": 0,
+        "count": 1,
+        "threshold": 500,
+        "meetsThreshold": true
+      },
+      "productById": {
+        "average": 0,
+        "min": 0,
+        "max": 0,
+        "count": 1,
+        "threshold": "N/A",
+        "meetsThreshold": true
+      },
+      "cart": {
+        "average": 0,
+        "min": 0,
+        "max": 0,
+        "count": 1,
+        "threshold": 300,
+        "meetsThreshold": true
+      },
+      "orders": {
+        "average": 0,
+        "min": 0,
+        "max": 0,
+        "count": 1,
+        "threshold": 500,
+        "meetsThreshold": true
+      }
+    },
+    "interactions": {
+      "addToCart": {
+        "average": 0,
+        "min": 0,
+        "max": 0,
+        "count": 1,
+        "threshold": 300,
+        "meetsThreshold": true
+      },
+      "updateQuantity": {
+        "average": 0,
+        "min": 0,
+        "max": 0,
+        "count": 1,
+        "threshold": 200,
+        "meetsThreshold": true
+      },
+      "checkout": {
+        "average": 0,
+        "min": 0,
+        "max": 0,
+        "count": 1,
+        "threshold": 1000,
+        "meetsThreshold": true
+      }
+    }
+  }
+}
