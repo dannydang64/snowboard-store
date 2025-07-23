@@ -1,0 +1,262 @@
+{
+  "tests": {
+    "API Endpoints P1: Products API should filter by category": {
+      "timestamp": "2025-07-22T21:44:40.615Z",
+      "metrics": {
+        "test:API Endpoints P1: Products API should filter by category": {
+          "name": "test:API Endpoints P1: Products API should filter by category",
+          "startTime": 19603.126208,
+          "startMemory": 55537680,
+          "endTime": 19603.470875,
+          "duration": 0.3446669999975711,
+          "memoryUsage": 30768
+        },
+        "api:getProductsByCategory": {
+          "name": "api:getProductsByCategory",
+          "startTime": 19603.264458,
+          "startMemory": 55550560,
+          "endTime": 19603.344458,
+          "duration": 0.07999999999810825,
+          "memoryUsage": 5168,
+          "exceedsThreshold": false
+        }
+      }
+    },
+    "Product Browsing P0: Should display product details when product is selected": {
+      "timestamp": "2025-07-22T21:44:48.275Z",
+      "metrics": {
+        "homePage:": {
+          "name": "homePage:",
+          "startTime": 25588.044458,
+          "startMemory": 63896208
+        }
+      }
+    },
+    "API Endpoints P0: Cart API should support CRUD operations": {
+      "timestamp": "2025-07-22T21:44:40.618Z",
+      "metrics": {
+        "test:API Endpoints P0: Cart API should support CRUD operations": {
+          "name": "test:API Endpoints P0: Cart API should support CRUD operations",
+          "startTime": 19604.620083,
+          "startMemory": 56001144,
+          "endTime": 19606.551125,
+          "duration": 1.9310420000001614,
+          "memoryUsage": 194696
+        },
+        "api:createCart": {
+          "name": "api:createCart",
+          "startTime": 19605.012208,
+          "startMemory": 56029248,
+          "endTime": 19605.082125,
+          "duration": 0.06991700000071432,
+          "memoryUsage": 3480,
+          "exceedsThreshold": false
+        }
+      }
+    },
+    "API Endpoints P0: Orders API should create and retrieve orders": {
+      "timestamp": "2025-07-22T21:44:40.619Z",
+      "metrics": {
+        "test:API Endpoints P0: Orders API should create and retrieve orders": {
+          "name": "test:API Endpoints P0: Orders API should create and retrieve orders",
+          "startTime": 19607.698166,
+          "startMemory": 56632400,
+          "endTime": 19607.864,
+          "duration": 0.16583400000308757,
+          "memoryUsage": 23024
+        },
+        "api:createCartWithItem": {
+          "name": "api:createCartWithItem",
+          "startTime": 19607.797791,
+          "startMemory": 56644032,
+          "endTime": 19607.844,
+          "duration": 0.04620900000008987,
+          "memoryUsage": 4088
+        }
+      }
+    },
+    "Product Browsing P1: Should filter products by category": {
+      "timestamp": "2025-07-22T21:44:50.218Z",
+      "metrics": {
+        "homePage:": {
+          "name": "homePage:",
+          "startTime": 27268.038625,
+          "startMemory": 67463672
+        }
+      }
+    },
+    "Product Browsing P1: Should sort products by price": {
+      "timestamp": "2025-07-22T21:44:52.162Z",
+      "metrics": {
+        "homePage:": {
+          "name": "homePage:",
+          "startTime": 29210.211416,
+          "startMemory": 55783896
+        }
+      }
+    },
+    "API Endpoints P1: API should handle errors correctly": {
+      "timestamp": "2025-07-22T21:44:40.622Z",
+      "metrics": {
+        "test:API Endpoints P1: API should handle errors correctly": {
+          "name": "test:API Endpoints P1: API should handle errors correctly",
+          "startTime": 19608.962125,
+          "startMemory": 57100328,
+          "endTime": 19610.900125,
+          "duration": 1.9380000000019209,
+          "memoryUsage": 813384
+        },
+        "api:getInvalidProduct": {
+          "name": "api:getInvalidProduct",
+          "startTime": 19609.067291,
+          "startMemory": 57110464,
+          "endTime": 19610.832166,
+          "duration": 1.7648750000007567,
+          "memoryUsage": 794208
+        }
+      }
+    },
+    "Product Browsing P1: Should search for products by keyword": {
+      "timestamp": "2025-07-22T21:44:54.113Z",
+      "metrics": {
+        "homePage:": {
+          "name": "homePage:",
+          "startTime": 31152.811416,
+          "startMemory": 56879864
+        }
+      }
+    },
+    "Product Browsing P2: Should handle no search results gracefully": {
+      "timestamp": "2025-07-22T21:44:56.100Z",
+      "metrics": {
+        "homePage:": {
+          "name": "homePage:",
+          "startTime": 33104.315583,
+          "startMemory": 57389336
+        }
+      }
+    },
+    "Enhanced Shopping Cart P0: Should add product to cart from product detail page": {
+      "timestamp": "2025-07-22T21:44:28.430Z",
+      "metrics": {
+        "homePage:": {
+          "name": "homePage:",
+          "startTime": 1418.220916,
+          "startMemory": 47992168
+        }
+      }
+    },
+    "Enhanced Shopping Cart P0: Should update product quantity in cart": {
+      "timestamp": "2025-07-22T21:44:30.404Z",
+      "metrics": {
+        "homePage:": {
+          "name": "homePage:",
+          "startTime": 7422.687083,
+          "startMemory": 55028608
+        }
+      }
+    },
+    "Enhanced Shopping Cart P0: Should remove product from cart": {
+      "timestamp": "2025-07-22T21:44:32.344Z",
+      "metrics": {
+        "homePage:": {
+          "name": "homePage:",
+          "startTime": 9395.740416,
+          "startMemory": 44669904
+        }
+      }
+    },
+    "Enhanced Shopping Cart P1: Cart should persist across page refreshes": {
+      "timestamp": "2025-07-22T21:44:34.294Z",
+      "metrics": {
+        "homePage:": {
+          "name": "homePage:",
+          "startTime": 11338.226916,
+          "startMemory": 45740416
+        }
+      }
+    },
+    "Enhanced Shopping Cart P1: Cart calculations should be correct": {
+      "timestamp": "2025-07-22T21:44:36.241Z",
+      "metrics": {
+        "homePage:": {
+          "name": "homePage:",
+          "startTime": 13286.548166,
+          "startMemory": 46387680
+        }
+      }
+    },
+    "Enhanced Shopping Cart P2: Should handle maximum product quantity": {
+      "timestamp": "2025-07-22T21:44:38.187Z",
+      "metrics": {
+        "homePage:": {
+          "name": "homePage:",
+          "startTime": 15233.033041,
+          "startMemory": 47786560
+        }
+      }
+    },
+    "Enhanced Shopping Cart P1: Buy now functionality should work correctly": {
+      "timestamp": "2025-07-22T21:44:40.130Z",
+      "metrics": {
+        "homePage:": {
+          "name": "homePage:",
+          "startTime": 17177.978916,
+          "startMemory": 49459032
+        }
+      }
+    },
+    "Product Browsing P0: Should navigate to product category and display correct products": {
+      "timestamp": "2025-07-22T21:44:46.597Z",
+      "metrics": {
+        "homePage:": {
+          "name": "homePage:",
+          "startTime": 20277.625083,
+          "startMemory": 56871864
+        }
+      }
+    },
+    "API Endpoints P0: Products API should return correct data": {
+      "timestamp": "2025-07-22T21:44:40.604Z",
+      "metrics": {
+        "test:API Endpoints P0: Products API should return correct data": {
+          "name": "test:API Endpoints P0: Products API should return correct data",
+          "startTime": 19592.188833,
+          "startMemory": 53641896,
+          "endTime": 19592.503458,
+          "duration": 0.3146249999990687,
+          "memoryUsage": 28912
+        },
+        "api:getProducts": {
+          "name": "api:getProducts",
+          "startTime": 19592.379625,
+          "startMemory": 53656632,
+          "endTime": 19592.428375,
+          "duration": 0.04874999999810825,
+          "memoryUsage": 2872
+        }
+      }
+    },
+    "API Endpoints P1: API response times should meet performance thresholds": {
+      "timestamp": "2025-07-22T21:44:40.624Z",
+      "metrics": {
+        "test:API Endpoints P1: API response times should meet performance thresholds": {
+          "name": "test:API Endpoints P1: API response times should meet performance thresholds",
+          "startTime": 19612.095333,
+          "startMemory": 58333776,
+          "endTime": 19612.345375,
+          "duration": 0.2500419999996666,
+          "memoryUsage": 22680
+        },
+        "api:getProducts": {
+          "name": "api:getProducts",
+          "startTime": 19612.251583,
+          "startMemory": 58345512,
+          "endTime": 19612.285708,
+          "duration": 0.03412499999831198,
+          "memoryUsage": 2424
+        }
+      }
+    }
+  }
+}

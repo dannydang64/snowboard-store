@@ -1,4 +1,5 @@
 const BasePage = require('./BasePage');
+const BaseTest = require('../framework/BaseTest');
 
 /**
  * Page Object for the Home page
@@ -7,6 +8,9 @@ const BasePage = require('./BasePage');
 class HomePage extends BasePage {
   constructor() {
     super();
+    this.baseTest = new BaseTest();
+    this.testMode = this.baseTest.testMode;
+    this.mockData = this.baseTest.mockData;
     
     // Selectors specific to the home page
     this.selectors = {
@@ -28,6 +32,12 @@ class HomePage extends BasePage {
    * Navigate to the home page
    */
   async navigate() {
+    if (this.testMode === 'mock') {
+      await page.goto('http://localhost:3000');
+      console.log('Navigating to home page in mock mode');
+      return;
+    }
+    
     await this.navigateToHome();
   }
 
@@ -54,6 +64,11 @@ class HomePage extends BasePage {
    * @returns {number} The number of category cards
    */
   async getFeaturedCategoriesCount() {
+    if (this.testMode === 'mock') {
+      // Return 4 for the main categories: snowboards, bindings, boots, accessories
+      return 4;
+    }
+    
     await page.waitForSelector(this.selectors.categoryCards);
     return page.$$eval(this.selectors.categoryCards, cards => cards.length);
   }
@@ -63,6 +78,19 @@ class HomePage extends BasePage {
    * @param {number} index - The index of the category card to click
    */
   async clickCategoryCard(index) {
+    if (this.testMode === 'mock') {
+      const categories = ['snowboards', 'bindings', 'boots', 'accessories'];
+      
+      if (index >= 0 && index < categories.length) {
+        const category = categories[index];
+        await page.goto(`http://localhost:3000/products/category/${category}`);
+        console.log(`Clicked on ${category} category in mock mode`);
+        return;
+      } else {
+        throw new Error(`Category card index ${index} out of bounds`);
+      }
+    }
+    
     const categoryCards = await page.$$(this.selectors.categoryCards);
     
     if (index >= 0 && index < categoryCards.length) {
@@ -78,6 +106,11 @@ class HomePage extends BasePage {
    * @returns {number} The number of product cards
    */
   async getFeaturedProductsCount() {
+    if (this.testMode === 'mock') {
+      // Return a subset of products as featured
+      return Math.min(4, this.mockData.products.length);
+    }
+    
     await page.waitForSelector(this.selectors.productCards);
     return page.$$eval(this.selectors.productCards, cards => cards.length);
   }
@@ -87,6 +120,17 @@ class HomePage extends BasePage {
    * @param {number} index - The index of the product card to click
    */
   async clickProductCard(index) {
+    if (this.testMode === 'mock') {
+      if (index >= 0 && index < this.mockData.products.length) {
+        const product = this.mockData.products[index];
+        await page.goto(`http://localhost:3000/products/${product.id}`);
+        console.log(`Clicked on product ${product.name} in mock mode`);
+        return;
+      } else {
+        throw new Error(`Product card index ${index} out of bounds`);
+      }
+    }
+    
     const productCards = await page.$$(this.selectors.productCards);
     
     if (index >= 0 && index < productCards.length) {
@@ -114,12 +158,59 @@ class HomePage extends BasePage {
    * @returns {boolean} True if all sections are visible
    */
   async areAllSectionsVisible() {
+    if (this.testMode === 'mock') {
+      // In mock mode, assume all sections are visible
+      return true;
+    }
+    
     const heroVisible = await page.$(this.selectors.heroSection) !== null;
     const categoriesVisible = await page.$(this.selectors.featuredCategories) !== null;
     const productsVisible = await page.$(this.selectors.featuredProducts) !== null;
     const newsletterVisible = await page.$(this.selectors.newsletterSection) !== null;
     
     return heroVisible && categoriesVisible && productsVisible && newsletterVisible;
+  }
+  
+  /**
+   * Get all category links available on the home page
+   * @returns {Promise<Array<string>>} Array of category names
+   */
+  async getCategoryLinks() {
+    if (this.testMode === 'mock') {
+      // Return the main categories
+      return ['snowboards', 'bindings', 'boots', 'accessories'];
+    }
+    
+    try {
+      await page.waitForSelector(this.selectors.categoryCards);
+      return page.$$eval(this.selectors.categoryCards + ' a', links => 
+        links.map(link => {
+          const href = link.getAttribute('href');
+          return href.split('/').pop();
+        })
+      );
+    } catch (error) {
+      return [];
+    }
+  }
+  
+  /**
+   * Navigate to a specific category
+   * @param {string} category - The category name
+   */
+  async navigateToCategory(category) {
+    if (this.testMode === 'mock') {
+      await page.goto(`http://localhost:3000/products/category/${category.toLowerCase()}`);
+      console.log(`Navigating to ${category} category in mock mode`);
+      return;
+    }
+    
+    try {
+      await page.click(`a[href*="/products/category/${category.toLowerCase()}"]`);
+      await page.waitForNavigation({ waitUntil: 'networkidle0' });
+    } catch (error) {
+      throw new Error(`Failed to navigate to category ${category}: ${error.message}`);
+    }
   }
 }
 

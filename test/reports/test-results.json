@@ -1,30 +1,30 @@
 {
   "summary": {
-    "total": 32,
-    "passed": 21,
-    "failed": 11,
+    "total": 51,
+    "passed": 11,
+    "failed": 40,
     "skipped": 0,
-    "passRate": "65.63"
+    "passRate": "21.57"
   },
   "duration": {
-    "startTime": "2025-07-11T21:22:33.343Z",
+    "startTime": "2025-07-22T21:44:21.345Z",
     "endTime": null,
-    "totalMs": 949
+    "totalMs": 182538
   },
   "categoryResults": {
     "product": {
-      "passed": 1,
-      "failed": 5,
+      "passed": 2,
+      "failed": 4,
       "skipped": 0
     },
     "cart": {
-      "passed": 8,
-      "failed": 0,
+      "passed": 1,
+      "failed": 14,
       "skipped": 0
     },
     "checkout": {
-      "passed": 1,
-      "failed": 6,
+      "passed": 0,
+      "failed": 7,
       "skipped": 0
     },
     "api": {
@@ -35,61 +35,37 @@
   },
   "priorityResults": {
     "P0": {
-      "passed": 7,
-      "failed": 3,
-      "total": 10
+      "passed": 3,
+      "failed": 15,
+      "total": 18
     },
     "P1": {
-      "passed": 10,
-      "failed": 7,
-      "total": 17
+      "passed": 6,
+      "failed": 20,
+      "total": 26
     },
     "P2": {
-      "passed": 4,
-      "failed": 1,
-      "total": 5
+      "passed": 2,
+      "failed": 5,
+      "total": 7
     }
   },
   "tests": {
     "passed": [
       {
-        "name": "P2: Should not proceed to checkout with empty cart",
+        "name": "P1: Cart API operations should work correctly",
         "status": "passed",
-        "duration": 1,
-        "category": "checkout",
-        "priority": "P2",
-        "failureMessages": []
-      },
-      {
-        "name": "P1: Page load times should meet performance thresholds",
-        "status": "passed",
-        "duration": 3,
-        "category": "other",
+        "duration": 8,
+        "category": "cart",
         "priority": "P1",
         "failureMessages": []
       },
       {
         "name": "P1: API response times should meet performance thresholds",
         "status": "passed",
-        "duration": 1,
+        "duration": 3,
         "category": "other",
         "priority": "P1",
-        "failureMessages": []
-      },
-      {
-        "name": "P1: User interaction times should meet performance thresholds",
-        "status": "passed",
-        "duration": 0,
-        "category": "other",
-        "priority": "P1",
-        "failureMessages": []
-      },
-      {
-        "name": "P0: Checkout flow should meet performance thresholds",
-        "status": "passed",
-        "duration": 1,
-        "category": "other",
-        "priority": "P0",
         "failureMessages": []
       },
       {
@@ -101,73 +77,9 @@
         "failureMessages": []
       },
       {
-        "name": "P0: Should add product to cart from product detail page",
-        "status": "passed",
-        "duration": 3,
-        "category": "cart",
-        "priority": "P0",
-        "failureMessages": []
-      },
-      {
-        "name": "P0: Should update product quantity in cart",
-        "status": "passed",
-        "duration": 1,
-        "category": "cart",
-        "priority": "P0",
-        "failureMessages": []
-      },
-      {
-        "name": "P0: Should remove product from cart",
-        "status": "passed",
-        "duration": 0,
-        "category": "cart",
-        "priority": "P0",
-        "failureMessages": []
-      },
-      {
-        "name": "P1: Cart should persist across page refreshes",
-        "status": "passed",
-        "duration": 1,
-        "category": "cart",
-        "priority": "P1",
-        "failureMessages": []
-      },
-      {
-        "name": "P1: Cart API operations should work correctly",
-        "status": "passed",
-        "duration": 2,
-        "category": "cart",
-        "priority": "P1",
-        "failureMessages": []
-      },
-      {
-        "name": "P1: Buy Now functionality should work correctly",
-        "status": "passed",
-        "duration": 1,
-        "category": "cart",
-        "priority": "P1",
-        "failureMessages": []
-      },
-      {
-        "name": "P1: Cart calculations should be correct",
-        "status": "passed",
-        "duration": 0,
-        "category": "cart",
-        "priority": "P1",
-        "failureMessages": []
-      },
-      {
-        "name": "P2: Empty cart should show appropriate message",
-        "status": "passed",
-        "duration": 1,
-        "category": "cart",
-        "priority": "P2",
-        "failureMessages": []
-      },
-      {
         "name": "P0: Products API should return correct data",
         "status": "passed",
-        "duration": 0,
+        "duration": 1,
         "category": "api",
         "priority": "P0",
         "failureMessages": []
@@ -175,7 +87,7 @@
       {
         "name": "P0: Cart API should support CRUD operations",
         "status": "passed",
-        "duration": 1,
+        "duration": 2,
         "category": "api",
         "priority": "P0",
         "failureMessages": []
@@ -183,7 +95,7 @@
       {
         "name": "P0: Orders API should create and retrieve orders",
         "status": "passed",
-        "duration": 4,
+        "duration": 1,
         "category": "api",
         "priority": "P0",
         "failureMessages": []
@@ -191,7 +103,7 @@
       {
         "name": "P1: Orders API should update order status",
         "status": "passed",
-        "duration": 1,
+        "duration": 0,
         "category": "api",
         "priority": "P1",
         "failureMessages": []
@@ -199,7 +111,7 @@
       {
         "name": "P1: API should handle errors correctly",
         "status": "passed",
-        "duration": 4,
+        "duration": 3,
         "category": "api",
         "priority": "P1",
         "failureMessages": []
@@ -207,7 +119,7 @@
       {
         "name": "P2: API should respond within acceptable time",
         "status": "passed",
-        "duration": 0,
+        "duration": 1,
         "category": "api",
         "priority": "P2",
         "failureMessages": []
@@ -215,7 +127,15 @@
       {
         "name": "P1: Product API should return correct data",
         "status": "passed",
-        "duration": 1,
+        "duration": 1985,
+        "category": "product",
+        "priority": "P1",
+        "failureMessages": []
+      },
+      {
+        "name": "P1: Product images should load correctly",
+        "status": "passed",
+        "duration": 2961,
         "category": "product",
         "priority": "P1",
         "failureMessages": []
@@ -223,113 +143,416 @@
     ],
     "failed": [
       {
+        "name": "P0: Should add product to cart from product detail page",
+        "status": "failed",
+        "duration": 6009,
+        "category": "cart",
+        "priority": "P0",
+        "failureMessages": [
+          "TypeError: Cannot read properties of undefined (reading 'filter')\n    at evaluate (evaluate at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:98:43), <anonymous>:7:45)\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at ExecutionContext.evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:192:12)\n    at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:99:32)\n    at EnhancedBaseTest.navigateToHome (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:74:5)\n    at EnhancedBaseTest.setup (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:45:7)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/enhanced-cart.test.js:26:5)",
+          "TypeError: Cannot set properties of undefined (setting 'endTime')\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/enhanced-cart.test.js:43:21)"
+        ]
+      },
+      {
+        "name": "P0: Should update product quantity in cart",
+        "status": "failed",
+        "duration": 1973,
+        "category": "cart",
+        "priority": "P0",
+        "failureMessages": [
+          "TypeError: Cannot read properties of undefined (reading 'filter')\n    at evaluate (evaluate at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:98:43), <anonymous>:7:45)\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at ExecutionContext.evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:192:12)\n    at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:99:32)\n    at EnhancedBaseTest.navigateToHome (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:74:5)\n    at EnhancedBaseTest.setup (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:45:7)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/enhanced-cart.test.js:26:5)",
+          "TypeError: Cannot set properties of undefined (setting 'endTime')\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/enhanced-cart.test.js:43:21)"
+        ]
+      },
+      {
+        "name": "P0: Should remove product from cart",
+        "status": "failed",
+        "duration": 1941,
+        "category": "cart",
+        "priority": "P0",
+        "failureMessages": [
+          "TypeError: Cannot read properties of undefined (reading 'filter')\n    at evaluate (evaluate at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:98:43), <anonymous>:7:45)\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at ExecutionContext.evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:192:12)\n    at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:99:32)\n    at EnhancedBaseTest.navigateToHome (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:74:5)\n    at EnhancedBaseTest.setup (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:45:7)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/enhanced-cart.test.js:26:5)",
+          "TypeError: Cannot set properties of undefined (setting 'endTime')\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/enhanced-cart.test.js:43:21)"
+        ]
+      },
+      {
+        "name": "P1: Cart should persist across page refreshes",
+        "status": "failed",
+        "duration": 1948,
+        "category": "cart",
+        "priority": "P1",
+        "failureMessages": [
+          "TypeError: Cannot read properties of undefined (reading 'filter')\n    at evaluate (evaluate at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:98:43), <anonymous>:7:45)\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at ExecutionContext.evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:192:12)\n    at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:99:32)\n    at EnhancedBaseTest.navigateToHome (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:74:5)\n    at EnhancedBaseTest.setup (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:45:7)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/enhanced-cart.test.js:26:5)",
+          "TypeError: Cannot set properties of undefined (setting 'endTime')\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/enhanced-cart.test.js:43:21)"
+        ]
+      },
+      {
+        "name": "P1: Cart calculations should be correct",
+        "status": "failed",
+        "duration": 1946,
+        "category": "cart",
+        "priority": "P1",
+        "failureMessages": [
+          "TypeError: Cannot read properties of undefined (reading 'filter')\n    at evaluate (evaluate at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:98:43), <anonymous>:7:45)\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at ExecutionContext.evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:192:12)\n    at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:99:32)\n    at EnhancedBaseTest.navigateToHome (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:74:5)\n    at EnhancedBaseTest.setup (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:45:7)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/enhanced-cart.test.js:26:5)",
+          "TypeError: Cannot set properties of undefined (setting 'endTime')\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/enhanced-cart.test.js:43:21)"
+        ]
+      },
+      {
+        "name": "P2: Should handle maximum product quantity",
+        "status": "failed",
+        "duration": 1945,
+        "category": "cart",
+        "priority": "P2",
+        "failureMessages": [
+          "TypeError: Cannot read properties of undefined (reading 'filter')\n    at evaluate (evaluate at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:98:43), <anonymous>:7:45)\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at ExecutionContext.evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:192:12)\n    at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:99:32)\n    at EnhancedBaseTest.navigateToHome (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:74:5)\n    at EnhancedBaseTest.setup (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:45:7)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/enhanced-cart.test.js:26:5)",
+          "TypeError: Cannot set properties of undefined (setting 'endTime')\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/enhanced-cart.test.js:43:21)"
+        ]
+      },
+      {
+        "name": "P1: Buy now functionality should work correctly",
+        "status": "failed",
+        "duration": 1943,
+        "category": "cart",
+        "priority": "P1",
+        "failureMessages": [
+          "TypeError: Cannot read properties of undefined (reading 'filter')\n    at evaluate (evaluate at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:98:43), <anonymous>:7:45)\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at ExecutionContext.evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:192:12)\n    at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:99:32)\n    at EnhancedBaseTest.navigateToHome (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:74:5)\n    at EnhancedBaseTest.setup (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:45:7)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/enhanced-cart.test.js:26:5)",
+          "TypeError: Cannot set properties of undefined (setting 'endTime')\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/enhanced-cart.test.js:43:21)"
+        ]
+      },
+      {
+        "name": "P0: Products API should return correct data",
+        "status": "failed",
+        "duration": 4,
+        "category": "other",
+        "priority": "P0",
+        "failureMessages": [
+          "TypeError: apiHelper.getAllProducts is not a function\n    at getAllProducts (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/api-endpoints.test.js:56:23)\n    at PerformanceMonitor.apiFn [as measureApiCall] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:143:30)\n    at Object.measureApiCall (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/api-endpoints.test.js:54:59)\n    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)\n    at _callCircusTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:316:40)\n    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:252:3)\n    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)\n    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)\n    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)\n    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)\n    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)\n    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)\n    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)"
+        ]
+      },
+      {
+        "name": "P1: Products API should filter by category",
+        "status": "failed",
+        "duration": 1,
+        "category": "other",
+        "priority": "P1",
+        "failureMessages": [
+          "TypeError: Cannot read properties of undefined (reading 'length')\n    at Object.length (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/api-endpoints.test.js:136:23)"
+        ]
+      },
+      {
+        "name": "P0: Cart API should support CRUD operations",
+        "status": "failed",
+        "duration": 3,
+        "category": "other",
+        "priority": "P0",
+        "failureMessages": [
+          "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31mundefined\u001b[39m\n    at Object.toBe (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/api-endpoints.test.js:192:35)"
+        ]
+      },
+      {
+        "name": "P0: Orders API should create and retrieve orders",
+        "status": "failed",
+        "duration": 1,
+        "category": "other",
+        "priority": "P0",
+        "failureMessages": [
+          "TypeError: Cannot read properties of undefined (reading 'cartId')\n    at cartId (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/api-endpoints.test.js:288:29)\n    at PerformanceMonitor.measureApiCall (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:143:24)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/api-endpoints.test.js:283:40)"
+        ]
+      },
+      {
+        "name": "P1: API should handle errors correctly",
+        "status": "failed",
+        "duration": 3,
+        "category": "other",
+        "priority": "P1",
+        "failureMessages": [
+          "Product not found"
+        ]
+      },
+      {
+        "name": "P1: API response times should meet performance thresholds",
+        "status": "failed",
+        "duration": 1,
+        "category": "other",
+        "priority": "P1",
+        "failureMessages": [
+          "TypeError: apiHelper.getAllProducts is not a function\n    at getAllProducts (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/api-endpoints.test.js:425:23)\n    at PerformanceMonitor.apiFn [as measureApiCall] (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:143:30)\n    at Object.measureApiCall (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/api-endpoints.test.js:423:93)\n    at Promise.then.completed (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:298:28)\n    at new Promise (<anonymous>)\n    at callAsyncCircusFn (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/utils.js:231:10)\n    at _callCircusTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:316:40)\n    at _runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:252:3)\n    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:126:9)\n    at _runTestsForDescribeBlock (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:121:9)\n    at run (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/run.js:71:3)\n    at runAndTransformResultsToJestFormat (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)\n    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)\n    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)\n    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)"
+        ]
+      },
+      {
+        "name": "P0: Should navigate to product category and display correct products",
+        "status": "failed",
+        "duration": 5311,
+        "category": "other",
+        "priority": "P0",
+        "failureMessages": [
+          "TypeError: Cannot read properties of undefined (reading 'filter')\n    at evaluate (evaluate at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:98:43), <anonymous>:7:45)\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at ExecutionContext.evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:192:12)\n    at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:99:32)\n    at EnhancedBaseTest.navigateToHome (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:74:5)\n    at EnhancedBaseTest.setup (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:45:7)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product-browsing.test.js:23:5)",
+          "TypeError: Cannot set properties of undefined (setting 'endTime')\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product-browsing.test.js:40:21)"
+        ]
+      },
+      {
+        "name": "P0: Should display product details when product is selected",
+        "status": "failed",
+        "duration": 1678,
+        "category": "other",
+        "priority": "P0",
+        "failureMessages": [
+          "TypeError: Cannot read properties of undefined (reading 'filter')\n    at evaluate (evaluate at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:98:43), <anonymous>:7:45)\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at ExecutionContext.evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:192:12)\n    at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:99:32)\n    at EnhancedBaseTest.navigateToHome (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:74:5)\n    at EnhancedBaseTest.setup (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:45:7)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product-browsing.test.js:23:5)",
+          "TypeError: Cannot set properties of undefined (setting 'endTime')\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product-browsing.test.js:40:21)"
+        ]
+      },
+      {
+        "name": "P1: Should filter products by category",
+        "status": "failed",
+        "duration": 1942,
+        "category": "other",
+        "priority": "P1",
+        "failureMessages": [
+          "TypeError: Cannot read properties of undefined (reading 'filter')\n    at evaluate (evaluate at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:98:43), <anonymous>:7:45)\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at ExecutionContext.evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:192:12)\n    at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:99:32)\n    at EnhancedBaseTest.navigateToHome (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:74:5)\n    at EnhancedBaseTest.setup (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:45:7)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product-browsing.test.js:23:5)",
+          "TypeError: Cannot set properties of undefined (setting 'endTime')\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product-browsing.test.js:40:21)"
+        ]
+      },
+      {
+        "name": "P1: Should sort products by price",
+        "status": "failed",
+        "duration": 1943,
+        "category": "other",
+        "priority": "P1",
+        "failureMessages": [
+          "TypeError: Cannot read properties of undefined (reading 'filter')\n    at evaluate (evaluate at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:98:43), <anonymous>:7:45)\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at ExecutionContext.evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:192:12)\n    at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:99:32)\n    at EnhancedBaseTest.navigateToHome (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:74:5)\n    at EnhancedBaseTest.setup (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:45:7)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product-browsing.test.js:23:5)",
+          "TypeError: Cannot set properties of undefined (setting 'endTime')\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product-browsing.test.js:40:21)"
+        ]
+      },
+      {
+        "name": "P1: Should search for products by keyword",
+        "status": "failed",
+        "duration": 1950,
+        "category": "other",
+        "priority": "P1",
+        "failureMessages": [
+          "TypeError: Cannot read properties of undefined (reading 'filter')\n    at evaluate (evaluate at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:98:43), <anonymous>:7:45)\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at ExecutionContext.evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:192:12)\n    at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:99:32)\n    at EnhancedBaseTest.navigateToHome (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:74:5)\n    at EnhancedBaseTest.setup (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:45:7)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product-browsing.test.js:23:5)",
+          "TypeError: Cannot set properties of undefined (setting 'endTime')\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product-browsing.test.js:40:21)"
+        ]
+      },
+      {
+        "name": "P2: Should handle no search results gracefully",
+        "status": "failed",
+        "duration": 1986,
+        "category": "other",
+        "priority": "P2",
+        "failureMessages": [
+          "TypeError: Cannot read properties of undefined (reading 'filter')\n    at evaluate (evaluate at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:98:43), <anonymous>:7:45)\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at ExecutionContext.evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:192:12)\n    at PerformanceMonitor.measurePageLoad (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceMonitor.js:99:32)\n    at EnhancedBaseTest.navigateToHome (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:74:5)\n    at EnhancedBaseTest.setup (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/framework/EnhancedBaseTest.js:45:7)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product-browsing.test.js:23:5)",
+          "TypeError: Cannot set properties of undefined (setting 'endTime')\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product-browsing.test.js:40:21)"
+        ]
+      },
+      {
         "name": "P0: Should complete checkout process with valid information",
         "status": "failed",
-        "duration": 11,
+        "duration": 5373,
         "category": "checkout",
         "priority": "P0",
         "failureMessages": [
-          "Error: expect(received).toContain(expected) // indexOf\n\nExpected substring: \"/checkout\"\nReceived string:    \"http://localhost:3000/products/sb-001\"\n    at Object.toContain (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:60:24)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)"
+          "DOMException: Failed to execute 'querySelectorAll' on 'Document': 'button:contains(\"Add to Cart\")' is not a valid selector.\nre (pptr:internal:3:12662)\nIe (pptr:internal:3:12936)\npptr:evaluateHandle;CDPElementHandle.evaluateHandle%20(%2FUsers%2Fdanny.dang%2Fgithub%2Fsnowboard_demo%2Fsnowboard-store-clean%2Ftest%2Fnode_modules%2Fpuppeteer-core%2Flib%2Fcjs%2Fpuppeteer%2Fapi%2FElementHandle.js%3A101%3A28):2:16\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at CDPJSHandle.evaluateHandle (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/JSHandle.ts:93:12)\n    at Function.queryOne (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/QueryHandler.ts:130:20)\n    at CDPElementHandle.$ (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/api/ElementHandle.ts:277:13)\n    at IsolatedWorld.click (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/IsolatedWorld.ts:315:20)\n    at async Promise.all (index 0)\n    at ProductDetailPage.addToCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:188:5)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:36:5)"
         ]
       },
       {
         "name": "P1: Should validate shipping information form",
         "status": "failed",
-        "duration": 3,
+        "duration": 1392,
         "category": "checkout",
         "priority": "P1",
         "failureMessages": [
-          "Error: expect(received).toBeGreaterThan(expected)\n\nExpected: > 0\nReceived:   0\n    at Object.toBeGreaterThan (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:95:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)"
+          "DOMException: Failed to execute 'querySelectorAll' on 'Document': 'button:contains(\"Add to Cart\")' is not a valid selector.\nre (pptr:internal:3:12662)\nIe (pptr:internal:3:12936)\npptr:evaluateHandle;CDPElementHandle.evaluateHandle%20(%2FUsers%2Fdanny.dang%2Fgithub%2Fsnowboard_demo%2Fsnowboard-store-clean%2Ftest%2Fnode_modules%2Fpuppeteer-core%2Flib%2Fcjs%2Fpuppeteer%2Fapi%2FElementHandle.js%3A101%3A28):2:16\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at CDPJSHandle.evaluateHandle (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/JSHandle.ts:93:12)\n    at Function.queryOne (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/QueryHandler.ts:130:20)\n    at CDPElementHandle.$ (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/api/ElementHandle.ts:277:13)\n    at IsolatedWorld.click (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/IsolatedWorld.ts:315:20)\n    at async Promise.all (index 0)\n    at ProductDetailPage.addToCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:188:5)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:36:5)"
         ]
       },
       {
         "name": "P1: Order summary should show correct information",
         "status": "failed",
-        "duration": 2,
+        "duration": 1322,
         "category": "checkout",
         "priority": "P1",
         "failureMessages": [
-          "Error: expect(received).toBeGreaterThan(expected)\n\nMatcher error: received value must be a number or bigint\n\nReceived has value: undefined\n    at Object.toBeGreaterThan (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:151:22)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)"
+          "DOMException: Failed to execute 'querySelectorAll' on 'Document': 'button:contains(\"Add to Cart\")' is not a valid selector.\nre (pptr:internal:3:12662)\nIe (pptr:internal:3:12936)\npptr:evaluateHandle;CDPElementHandle.evaluateHandle%20(%2FUsers%2Fdanny.dang%2Fgithub%2Fsnowboard_demo%2Fsnowboard-store-clean%2Ftest%2Fnode_modules%2Fpuppeteer-core%2Flib%2Fcjs%2Fpuppeteer%2Fapi%2FElementHandle.js%3A101%3A28):2:16\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at CDPJSHandle.evaluateHandle (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/JSHandle.ts:93:12)\n    at Function.queryOne (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/QueryHandler.ts:130:20)\n    at CDPElementHandle.$ (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/api/ElementHandle.ts:277:13)\n    at IsolatedWorld.click (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/IsolatedWorld.ts:315:20)\n    at async Promise.all (index 0)\n    at ProductDetailPage.addToCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:188:5)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:36:5)"
+        ]
+      },
+      {
+        "name": "P2: Should not proceed to checkout with empty cart",
+        "status": "failed",
+        "duration": 1962,
+        "category": "checkout",
+        "priority": "P2",
+        "failureMessages": [
+          "DOMException: Failed to execute 'querySelectorAll' on 'Document': 'button:contains(\"Add to Cart\")' is not a valid selector.\nre (pptr:internal:3:12662)\nIe (pptr:internal:3:12936)\npptr:evaluateHandle;CDPElementHandle.evaluateHandle%20(%2FUsers%2Fdanny.dang%2Fgithub%2Fsnowboard_demo%2Fsnowboard-store-clean%2Ftest%2Fnode_modules%2Fpuppeteer-core%2Flib%2Fcjs%2Fpuppeteer%2Fapi%2FElementHandle.js%3A101%3A28):2:16\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at CDPJSHandle.evaluateHandle (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/JSHandle.ts:93:12)\n    at Function.queryOne (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/QueryHandler.ts:130:20)\n    at CDPElementHandle.$ (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/api/ElementHandle.ts:277:13)\n    at IsolatedWorld.click (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/IsolatedWorld.ts:315:20)\n    at async Promise.all (index 0)\n    at ProductDetailPage.addToCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:188:5)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:36:5)"
         ]
       },
       {
         "name": "P1: Order confirmation page should display correct information",
         "status": "failed",
-        "duration": 1,
+        "duration": 1351,
         "category": "checkout",
         "priority": "P1",
         "failureMessages": [
-          "Error: expect(received).toBeTruthy()\n\nReceived: null\n    at Object.toBeTruthy (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:207:25)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)"
+          "DOMException: Failed to execute 'querySelectorAll' on 'Document': 'button:contains(\"Add to Cart\")' is not a valid selector.\nre (pptr:internal:3:12662)\nIe (pptr:internal:3:12936)\npptr:evaluateHandle;CDPElementHandle.evaluateHandle%20(%2FUsers%2Fdanny.dang%2Fgithub%2Fsnowboard_demo%2Fsnowboard-store-clean%2Ftest%2Fnode_modules%2Fpuppeteer-core%2Flib%2Fcjs%2Fpuppeteer%2Fapi%2FElementHandle.js%3A101%3A28):2:16\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at CDPJSHandle.evaluateHandle (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/JSHandle.ts:93:12)\n    at Function.queryOne (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/QueryHandler.ts:130:20)\n    at CDPElementHandle.$ (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/api/ElementHandle.ts:277:13)\n    at IsolatedWorld.click (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/IsolatedWorld.ts:315:20)\n    at async Promise.all (index 0)\n    at ProductDetailPage.addToCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:188:5)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:36:5)"
         ]
       },
       {
         "name": "P1: Should checkout with multiple products",
         "status": "failed",
-        "duration": 2,
+        "duration": 1327,
         "category": "checkout",
         "priority": "P1",
         "failureMessages": [
-          "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: \"order-1752268953927\"\n    at Object.toBe (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:263:29)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)"
+          "DOMException: Failed to execute 'querySelectorAll' on 'Document': 'button:contains(\"Add to Cart\")' is not a valid selector.\nre (pptr:internal:3:12662)\nIe (pptr:internal:3:12936)\npptr:evaluateHandle;CDPElementHandle.evaluateHandle%20(%2FUsers%2Fdanny.dang%2Fgithub%2Fsnowboard_demo%2Fsnowboard-store-clean%2Ftest%2Fnode_modules%2Fpuppeteer-core%2Flib%2Fcjs%2Fpuppeteer%2Fapi%2FElementHandle.js%3A101%3A28):2:16\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at CDPJSHandle.evaluateHandle (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/JSHandle.ts:93:12)\n    at Function.queryOne (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/QueryHandler.ts:130:20)\n    at CDPElementHandle.$ (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/api/ElementHandle.ts:277:13)\n    at IsolatedWorld.click (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/IsolatedWorld.ts:315:20)\n    at async Promise.all (index 0)\n    at ProductDetailPage.addToCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:188:5)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:36:5)"
         ]
       },
       {
         "name": "P1: Should reject invalid payment information",
         "status": "failed",
-        "duration": 2,
+        "duration": 1955,
         "category": "checkout",
         "priority": "P1",
         "failureMessages": [
-          "Error: expect(received).toBeGreaterThan(expected)\n\nExpected: > 0\nReceived:   0\n    at Object.toBeGreaterThan (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:300:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)"
+          "DOMException: Failed to execute 'querySelectorAll' on 'Document': 'button:contains(\"Add to Cart\")' is not a valid selector.\nre (pptr:internal:3:12662)\nIe (pptr:internal:3:12936)\npptr:evaluateHandle;CDPElementHandle.evaluateHandle%20(%2FUsers%2Fdanny.dang%2Fgithub%2Fsnowboard_demo%2Fsnowboard-store-clean%2Ftest%2Fnode_modules%2Fpuppeteer-core%2Flib%2Fcjs%2Fpuppeteer%2Fapi%2FElementHandle.js%3A101%3A28):2:16\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at CDPJSHandle.evaluateHandle (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/JSHandle.ts:93:12)\n    at Function.queryOne (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/QueryHandler.ts:130:20)\n    at CDPElementHandle.$ (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/api/ElementHandle.ts:277:13)\n    at IsolatedWorld.click (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/IsolatedWorld.ts:315:20)\n    at async Promise.all (index 0)\n    at ProductDetailPage.addToCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:188:5)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/checkout.test.js:36:5)"
+        ]
+      },
+      {
+        "name": "P0: Should add product to cart from product detail page",
+        "status": "failed",
+        "duration": 5319,
+        "category": "cart",
+        "priority": "P0",
+        "failureMessages": [
+          "DOMException: Failed to execute 'querySelectorAll' on 'Document': 'button:contains(\"Add to Cart\")' is not a valid selector.\nre (pptr:internal:3:12662)\nIe (pptr:internal:3:12936)\npptr:evaluateHandle;CDPElementHandle.evaluateHandle%20(%2FUsers%2Fdanny.dang%2Fgithub%2Fsnowboard_demo%2Fsnowboard-store-clean%2Ftest%2Fnode_modules%2Fpuppeteer-core%2Flib%2Fcjs%2Fpuppeteer%2Fapi%2FElementHandle.js%3A101%3A28):2:16\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at CDPJSHandle.evaluateHandle (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/JSHandle.ts:93:12)\n    at Function.queryOne (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/QueryHandler.ts:130:20)\n    at CDPElementHandle.$ (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/api/ElementHandle.ts:277:13)\n    at IsolatedWorld.click (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/IsolatedWorld.ts:315:20)\n    at async Promise.all (index 0)\n    at ProductDetailPage.addToCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:188:5)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:49:5)"
+        ]
+      },
+      {
+        "name": "P0: Should update product quantity in cart",
+        "status": "failed",
+        "duration": 1374,
+        "category": "cart",
+        "priority": "P0",
+        "failureMessages": [
+          "DOMException: Failed to execute 'querySelectorAll' on 'Document': 'button:contains(\"Add to Cart\")' is not a valid selector.\nre (pptr:internal:3:12662)\nIe (pptr:internal:3:12936)\npptr:evaluateHandle;CDPElementHandle.evaluateHandle%20(%2FUsers%2Fdanny.dang%2Fgithub%2Fsnowboard_demo%2Fsnowboard-store-clean%2Ftest%2Fnode_modules%2Fpuppeteer-core%2Flib%2Fcjs%2Fpuppeteer%2Fapi%2FElementHandle.js%3A101%3A28):2:16\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at CDPJSHandle.evaluateHandle (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/JSHandle.ts:93:12)\n    at Function.queryOne (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/QueryHandler.ts:130:20)\n    at CDPElementHandle.$ (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/api/ElementHandle.ts:277:13)\n    at IsolatedWorld.click (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/IsolatedWorld.ts:315:20)\n    at async Promise.all (index 0)\n    at ProductDetailPage.addToCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:188:5)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:78:5)"
+        ]
+      },
+      {
+        "name": "P0: Should remove product from cart",
+        "status": "failed",
+        "duration": 1311,
+        "category": "cart",
+        "priority": "P0",
+        "failureMessages": [
+          "DOMException: Failed to execute 'querySelectorAll' on 'Document': 'button:contains(\"Add to Cart\")' is not a valid selector.\nre (pptr:internal:3:12662)\nIe (pptr:internal:3:12936)\npptr:evaluateHandle;CDPElementHandle.evaluateHandle%20(%2FUsers%2Fdanny.dang%2Fgithub%2Fsnowboard_demo%2Fsnowboard-store-clean%2Ftest%2Fnode_modules%2Fpuppeteer-core%2Flib%2Fcjs%2Fpuppeteer%2Fapi%2FElementHandle.js%3A101%3A28):2:16\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at CDPJSHandle.evaluateHandle (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/JSHandle.ts:93:12)\n    at Function.queryOne (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/QueryHandler.ts:130:20)\n    at CDPElementHandle.$ (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/api/ElementHandle.ts:277:13)\n    at IsolatedWorld.click (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/IsolatedWorld.ts:315:20)\n    at async Promise.all (index 0)\n    at ProductDetailPage.addToCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:188:5)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:118:5)"
+        ]
+      },
+      {
+        "name": "P1: Cart should persist across page refreshes",
+        "status": "failed",
+        "duration": 1334,
+        "category": "cart",
+        "priority": "P1",
+        "failureMessages": [
+          "DOMException: Failed to execute 'querySelectorAll' on 'Document': 'button:contains(\"Add to Cart\")' is not a valid selector.\nre (pptr:internal:3:12662)\nIe (pptr:internal:3:12936)\npptr:evaluateHandle;CDPElementHandle.evaluateHandle%20(%2FUsers%2Fdanny.dang%2Fgithub%2Fsnowboard_demo%2Fsnowboard-store-clean%2Ftest%2Fnode_modules%2Fpuppeteer-core%2Flib%2Fcjs%2Fpuppeteer%2Fapi%2FElementHandle.js%3A101%3A28):2:16\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at CDPJSHandle.evaluateHandle (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/JSHandle.ts:93:12)\n    at Function.queryOne (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/QueryHandler.ts:130:20)\n    at CDPElementHandle.$ (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/api/ElementHandle.ts:277:13)\n    at IsolatedWorld.click (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/IsolatedWorld.ts:315:20)\n    at async Promise.all (index 0)\n    at ProductDetailPage.addToCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:188:5)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:150:5)"
+        ]
+      },
+      {
+        "name": "P1: Buy Now functionality should work correctly",
+        "status": "failed",
+        "duration": 1329,
+        "category": "cart",
+        "priority": "P1",
+        "failureMessages": [
+          "DOMException: Failed to execute 'querySelectorAll' on 'Document': 'button:contains(\"Buy Now\")' is not a valid selector.\nre (pptr:internal:3:12662)\nIe (pptr:internal:3:12936)\npptr:evaluateHandle;CDPElementHandle.evaluateHandle%20(%2FUsers%2Fdanny.dang%2Fgithub%2Fsnowboard_demo%2Fsnowboard-store-clean%2Ftest%2Fnode_modules%2Fpuppeteer-core%2Flib%2Fcjs%2Fpuppeteer%2Fapi%2FElementHandle.js%3A101%3A28):2:16\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at CDPJSHandle.evaluateHandle (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/JSHandle.ts:93:12)\n    at Function.queryOne (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/QueryHandler.ts:130:20)\n    at CDPElementHandle.$ (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/api/ElementHandle.ts:277:13)\n    at IsolatedWorld.click (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/IsolatedWorld.ts:315:20)\n    at ProductDetailPage.buyNow (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:218:5)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:234:5)"
+        ]
+      },
+      {
+        "name": "P1: Cart calculations should be correct",
+        "status": "failed",
+        "duration": 1333,
+        "category": "cart",
+        "priority": "P1",
+        "failureMessages": [
+          "DOMException: Failed to execute 'querySelectorAll' on 'Document': 'button:contains(\"Add to Cart\")' is not a valid selector.\nre (pptr:internal:3:12662)\nIe (pptr:internal:3:12936)\npptr:evaluateHandle;CDPElementHandle.evaluateHandle%20(%2FUsers%2Fdanny.dang%2Fgithub%2Fsnowboard_demo%2Fsnowboard-store-clean%2Ftest%2Fnode_modules%2Fpuppeteer-core%2Flib%2Fcjs%2Fpuppeteer%2Fapi%2FElementHandle.js%3A101%3A28):2:16\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at CDPJSHandle.evaluateHandle (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/JSHandle.ts:93:12)\n    at Function.queryOne (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/QueryHandler.ts:130:20)\n    at CDPElementHandle.$ (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/api/ElementHandle.ts:277:13)\n    at IsolatedWorld.click (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/IsolatedWorld.ts:315:20)\n    at async Promise.all (index 0)\n    at ProductDetailPage.addToCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:188:5)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:262:5)"
+        ]
+      },
+      {
+        "name": "P2: Empty cart should show appropriate message",
+        "status": "failed",
+        "duration": 3960,
+        "category": "cart",
+        "priority": "P2",
+        "failureMessages": [
+          "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at Object.toBe (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/cart.test.js:307:25)"
+        ]
+      },
+      {
+        "name": "P1: Page load times should meet performance thresholds",
+        "status": "failed",
+        "duration": 30001,
+        "category": "other",
+        "priority": "P1",
+        "failureMessages": [
+          "Error: thrown: \"Exceeded timeout of 30000 ms for a test.\nAdd a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout.\"\n    at test (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:44:3)\n    at _dispatchDescribe (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/index.js:91:26)\n    at describe (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/index.js:55:5)\n    at Object.describe (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:14:1)\n    at Runtime._execModule (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runtime/build/index.js:1439:24)\n    at Runtime._loadModule (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runtime/build/index.js:1022:12)\n    at Runtime.requireModule (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runtime/build/index.js:882:12)\n    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:77:13)\n    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)\n    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)"
+        ]
+      },
+      {
+        "name": "P1: User interaction times should meet performance thresholds",
+        "status": "failed",
+        "duration": 2033,
+        "category": "other",
+        "priority": "P1",
+        "failureMessages": [
+          "DOMException: Failed to execute 'querySelectorAll' on 'Document': 'button:contains(\"Add to Cart\")' is not a valid selector.\nre (pptr:internal:3:12662)\nIe (pptr:internal:3:12936)\npptr:evaluateHandle;CDPElementHandle.evaluateHandle%20(%2FUsers%2Fdanny.dang%2Fgithub%2Fsnowboard_demo%2Fsnowboard-store-clean%2Ftest%2Fnode_modules%2Fpuppeteer-core%2Flib%2Fcjs%2Fpuppeteer%2Fapi%2FElementHandle.js%3A101%3A28):2:16\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at CDPJSHandle.evaluateHandle (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/JSHandle.ts:93:12)\n    at Function.queryOne (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/QueryHandler.ts:130:20)\n    at CDPElementHandle.$ (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/api/ElementHandle.ts:277:13)\n    at IsolatedWorld.click (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/IsolatedWorld.ts:315:20)\n    at async Promise.all (index 0)\n    at ProductDetailPage.addToCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:188:5)\n    at /Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:148:7\n    at PerformanceHelper.measureInteraction (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/utils/PerformanceHelper.js:94:5)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:147:27)"
+        ]
+      },
+      {
+        "name": "P0: Checkout flow should meet performance thresholds",
+        "status": "failed",
+        "duration": 1372,
+        "category": "other",
+        "priority": "P0",
+        "failureMessages": [
+          "DOMException: Failed to execute 'querySelectorAll' on 'Document': 'button:contains(\"Add to Cart\")' is not a valid selector.\nre (pptr:internal:3:12662)\nIe (pptr:internal:3:12936)\npptr:evaluateHandle;CDPElementHandle.evaluateHandle%20(%2FUsers%2Fdanny.dang%2Fgithub%2Fsnowboard_demo%2Fsnowboard-store-clean%2Ftest%2Fnode_modules%2Fpuppeteer-core%2Flib%2Fcjs%2Fpuppeteer%2Fapi%2FElementHandle.js%3A101%3A28):2:16\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at CDPJSHandle.evaluateHandle (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/JSHandle.ts:93:12)\n    at Function.queryOne (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/QueryHandler.ts:130:20)\n    at CDPElementHandle.$ (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/api/ElementHandle.ts:277:13)\n    at IsolatedWorld.click (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/IsolatedWorld.ts:315:20)\n    at async Promise.all (index 0)\n    at ProductDetailPage.addToCart (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:188:5)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/performance.test.js:178:5)"
         ]
       },
       {
         "name": "P0: Should navigate to all product categories from home page",
         "status": "failed",
-        "duration": 0,
+        "duration": 35282,
         "category": "product",
         "priority": "P0",
         "failureMessages": [
-          "Error: expect(received).toBeGreaterThanOrEqual(expected)\n\nExpected: >= 4\nReceived:    0\n    at Object.toBeGreaterThanOrEqual (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:42:31)"
+          "Error: thrown: \"Exceeded timeout of 30000 ms for a test.\nAdd a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout.\"\n    at test (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:37:3)\n    at _dispatchDescribe (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/index.js:91:26)\n    at describe (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/index.js:55:5)\n    at Object.describe (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:10:1)\n    at Runtime._execModule (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runtime/build/index.js:1439:24)\n    at Runtime._loadModule (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runtime/build/index.js:1022:12)\n    at Runtime.requireModule (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runtime/build/index.js:882:12)\n    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:77:13)\n    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)\n    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)"
         ]
       },
       {
         "name": "P0: Should view product details from category page",
         "status": "failed",
-        "duration": 0,
+        "duration": 4000,
         "category": "product",
         "priority": "P0",
         "failureMessages": [
-          "Error: expect(received).toBeGreaterThan(expected)\n\nMatcher error: received value must be a number or bigint\n\nReceived has type:  array\nReceived has value: []\n    at Object.toBeGreaterThan (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:80:26)"
+          "TypeError: Cannot read properties of null (reading 'textContent')\n    at evaluate (evaluate at ProductDetailPage.getProductTitle (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductDetailPage.js:70:17), <anonymous>:0:10)\n    at ExecutionContext.#evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:337:34)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at ExecutionContext.evaluate (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/puppeteer-core/src/common/ExecutionContext.ts:192:12)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:90:26)"
         ]
       },
       {
         "name": "P1: Should display related products on product detail page",
         "status": "failed",
-        "duration": 1,
+        "duration": 31706,
         "category": "product",
         "priority": "P1",
         "failureMessages": [
-          "Error: expect(received).toBeGreaterThan(expected)\n\nMatcher error: received value must be a number or bigint\n\nReceived has type:  array\nReceived has value: []\n    at Object.toBeGreaterThan (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:123:34)"
+          "Error: thrown: \"Exceeded timeout of 30000 ms for a test.\nAdd a timeout value to this test to increase the timeout, if this is a long-running test. See https://jestjs.io/docs/api#testname-fn-timeout.\"\n    at test (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:113:3)\n    at _dispatchDescribe (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/index.js:91:26)\n    at describe (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/index.js:55:5)\n    at Object.describe (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:10:1)\n    at Runtime._execModule (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runtime/build/index.js:1439:24)\n    at Runtime._loadModule (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runtime/build/index.js:1022:12)\n    at Runtime.requireModule (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runtime/build/index.js:882:12)\n    at jestAdapter (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:77:13)\n    at runTestInternal (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:367:16)\n    at runTest (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/node_modules/jest-runner/build/runTest.js:444:34)"
         ]
       },
       {
         "name": "P2: Out of stock products should show correct status",
         "status": "failed",
-        "duration": 0,
+        "duration": 4240,
         "category": "product",
         "priority": "P2",
         "failureMessages": [
-          "Error: Failed to click product: Product index 0 out of bounds\n    at ProductsPage.clickProduct (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/pages/ProductsPage.js:138:13)\n    at Object.<anonymous> (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:191:5)"
-        ]
-      },
-      {
-        "name": "P1: Product images should load correctly",
-        "status": "failed",
-        "duration": 1,
-        "category": "product",
-        "priority": "P1",
-        "failureMessages": [
-          "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: null\n    at Object.toBe (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:232:25)"
+          "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoContain\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // indexOf\u001b[22m\n\nExpected substring: \u001b[32m\"in stock\"\u001b[39m\nReceived string:    \u001b[31m\"(34 reviews)\"\u001b[39m\n    at Object.toContain (/Users/danny.dang/github/snowboard_demo/snowboard-store-clean/test/specs/product.test.js:208:25)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)"
         ]
       }
     ],

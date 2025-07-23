@@ -1,0 +1,12 @@
+[
+  {
+    "type": "guest",
+    "email": "",
+    "password": ""
+  },
+  {
+    "type": "registered",
+    "email": "test@example.com",
+    "password": "Password123"
+  }
+]

@@ -66,7 +66,7 @@ describe('Checkout Process', () => {
     expect(checkoutSuccess).toBe(true);
     
     // Verify the order confirmation page has the expected elements
-    const isOrderConfirmationDisplayed = await orderConfirmationPage.isDisplayed();
+    const isOrderConfirmationDisplayed = await orderConfirmationPage.isOrderConfirmationDisplayed();
     expect(isOrderConfirmationDisplayed).toBe(true);
     
     // Verify the order number is displayed

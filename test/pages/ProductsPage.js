@@ -1,4 +1,5 @@
 const BasePage = require('./BasePage');
+const BaseTest = require('../framework/BaseTest');
 
 /**
  * Page Object for the Products listing page
@@ -7,6 +8,9 @@ const BasePage = require('./BasePage');
 class ProductsPage extends BasePage {
   constructor() {
     super();
+    this.baseTest = new BaseTest();
+    this.testMode = this.baseTest.testMode;
+    this.mockData = this.baseTest.mockData;
     
     // Selectors specific to the products page
     this.selectors = {
@@ -28,6 +32,12 @@ class ProductsPage extends BasePage {
    * Navigate to the products page
    */
   async navigate() {
+    if (this.testMode === 'mock') {
+      await page.goto('http://localhost:3000/products');
+      console.log('Navigating to products page in mock mode');
+      return;
+    }
+    
     await page.goto('http://localhost:3000/products', { waitUntil: 'networkidle0' });
   }
 
@@ -36,6 +46,12 @@ class ProductsPage extends BasePage {
    * @param {string} category - The category name (snowboards, bindings, boots, accessories)
    */
   async navigateToCategory(category) {
+    if (this.testMode === 'mock') {
+      await page.goto(`http://localhost:3000/products/category/${category.toLowerCase()}`);
+      console.log(`Navigating to ${category} category in mock mode`);
+      return;
+    }
+    
     await page.goto(`http://localhost:3000/products/category/${category.toLowerCase()}`, { 
       waitUntil: 'networkidle0' 
     });
@@ -46,6 +62,15 @@ class ProductsPage extends BasePage {
    * @returns {string} The category title text
    */
   async getCategoryTitle() {
+    if (this.testMode === 'mock') {
+      const url = await page.url();
+      if (url.includes('/category/')) {
+        const category = url.split('/').pop();
+        return category.charAt(0).toUpperCase() + category.slice(1);
+      }
+      return 'All Products';
+    }
+    
     try {
       await page.waitForSelector(this.selectors.categoryTitle);
       return page.$eval(this.selectors.categoryTitle, el => el.textContent.trim());
@@ -59,6 +84,15 @@ class ProductsPage extends BasePage {
    * @returns {number} The number of product cards
    */
   async getProductCount() {
+    if (this.testMode === 'mock') {
+      const url = await page.url();
+      if (url.includes('/category/')) {
+        const category = url.split('/').pop();
+        return this.mockData.products.filter(p => p.category === category).length;
+      }
+      return this.mockData.products.length;
+    }
+    
     try {
       await page.waitForSelector(this.selectors.productCards);
       return page.$$eval(this.selectors.productCards, cards => cards.length);
@@ -72,6 +106,17 @@ class ProductsPage extends BasePage {
    * @returns {Array<string>} Array of product names
    */
   async getProductNames() {
+    if (this.testMode === 'mock') {
+      const url = await page.url();
+      if (url.includes('/category/')) {
+        const category = url.split('/').pop();
+        return this.mockData.products
+          .filter(p => p.category === category)
+          .map(p => p.name);
+      }
+      return this.mockData.products.map(p => p.name);
+    }
+    
     try {
       await page.waitForSelector(this.selectors.productNames);
       return page.$$eval(this.selectors.productNames, names => 
@@ -87,6 +132,17 @@ class ProductsPage extends BasePage {
    * @returns {Array<number>} Array of product prices (as numbers)
    */
   async getProductPrices() {
+    if (this.testMode === 'mock') {
+      const url = await page.url();
+      if (url.includes('/category/')) {
+        const category = url.split('/').pop();
+        return this.mockData.products
+          .filter(p => p.category === category)
+          .map(p => p.price);
+      }
+      return this.mockData.products.map(p => p.price);
+    }
+    
     try {
       await page.waitForSelector(this.selectors.productPrices);
       return page.$$eval(this.selectors.productPrices, prices => 
@@ -123,6 +179,25 @@ class ProductsPage extends BasePage {
    * @param {number} index - The index of the product to click
    */
   async clickProduct(index) {
+    if (this.testMode === 'mock') {
+      const url = await page.url();
+      let products = this.mockData.products;
+      
+      if (url.includes('/category/')) {
+        const category = url.split('/').pop();
+        products = products.filter(p => p.category === category);
+      }
+      
+      if (index >= 0 && index < products.length) {
+        const product = products[index];
+        await page.goto(`http://localhost:3000/products/${product.id}`);
+        console.log(`Clicked on product ${product.name} in mock mode`);
+        return;
+      } else {
+        throw new Error(`Product index ${index} out of bounds`);
+      }
+    }
+    
     try {
       const productCards = await page.$$(this.selectors.productCards);
       

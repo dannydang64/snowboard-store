@@ -5,6 +5,11 @@
 class MockDataStore {
   constructor() {
     // Initialize with default data
+    this.currentUrl = 'http://localhost:3000';
+    this.customer = null;
+    this.selectors = {
+      shippingAddress: '.shipping-address'
+    };
     this.reset();
   }
 
@@ -31,6 +36,40 @@ class MockDataStore {
         image: '/images/products/snowboard1.jpg'
       },
       {
+        id: 'sb-002',
+        name: 'Mountain Explorer Snowboard',
+        category: 'snowboards',
+        price: 549.99,
+        description: 'Versatile all-mountain snowboard for any terrain and condition.',
+        features: ['All-mountain design', 'Carbon reinforcement', 'Sintered base'],
+        specifications: {
+          weight: '3.0 kg',
+          dimensions: '159 x 26 cm',
+          material: 'Carbon/Wood composite'
+        },
+        stock: 8,
+        rating: 4.9,
+        reviews: 32,
+        image: '/images/products/snowboard2.jpg'
+      },
+      {
+        id: 'sb-003',
+        name: 'Powder King Snowboard',
+        category: 'snowboards',
+        price: 599.99,
+        description: 'Specialized powder snowboard with superior float and control.',
+        features: ['Wide nose', 'Tapered tail', 'Setback stance'],
+        specifications: {
+          weight: '3.2 kg',
+          dimensions: '162 x 27 cm',
+          material: 'Premium wood core'
+        },
+        stock: 5,
+        rating: 4.7,
+        reviews: 19,
+        image: '/images/products/snowboard3.jpg'
+      },
+      {
         id: 'bd-001',
         name: 'Performance Flex Bindings',
         category: 'bindings',
@@ -46,6 +85,23 @@ class MockDataStore {
         rating: 4.5,
         reviews: 18,
         image: '/images/products/bindings1.jpg'
+      },
+      {
+        id: 'bd-002',
+        name: 'Pro Carbon Bindings',
+        category: 'bindings',
+        price: 329.99,
+        description: 'Professional-grade carbon fiber bindings for maximum response.',
+        features: ['Carbon highback', 'Aluminum heelcup', 'Quick-adjust straps'],
+        specifications: {
+          weight: '0.8 kg',
+          dimensions: '25 x 15 cm',
+          material: 'Carbon fiber/Aluminum'
+        },
+        stock: 12,
+        rating: 4.8,
+        reviews: 24,
+        image: '/images/products/bindings2.jpg'
       },
       {
         id: 'bt-001',
@@ -65,6 +121,23 @@ class MockDataStore {
         image: '/images/products/boots1.jpg'
       },
       {
+        id: 'bt-002',
+        name: 'Alpine Pro Boots',
+        category: 'boots',
+        price: 359.99,
+        description: 'Professional alpine boots with superior support and response.',
+        features: ['Dual-zone BOA system', 'Performance liner', 'Vibram outsole'],
+        specifications: {
+          weight: '1.3 kg',
+          dimensions: '31 x 12 cm',
+          material: 'Premium leather/Synthetic'
+        },
+        stock: 8,
+        rating: 4.9,
+        reviews: 27,
+        image: '/images/products/boots2.jpg'
+      },
+      {
         id: 'ac-001',
         name: 'Winter Goggles Pro',
         category: 'accessories',
@@ -80,6 +153,40 @@ class MockDataStore {
         rating: 4.6,
         reviews: 22,
         image: '/images/products/goggles1.jpg'
+      },
+      {
+        id: 'ac-002',
+        name: 'All-Weather Gloves',
+        category: 'accessories',
+        price: 79.99,
+        description: 'Waterproof and breathable gloves for all weather conditions.',
+        features: ['Waterproof membrane', 'Thermal insulation', 'Touchscreen compatible'],
+        specifications: {
+          weight: '0.2 kg',
+          dimensions: 'S/M/L/XL',
+          material: 'Gore-Tex/Leather'
+        },
+        stock: 25,
+        rating: 4.5,
+        reviews: 31,
+        image: '/images/products/gloves1.jpg'
+      },
+      {
+        id: 'ac-003',
+        name: 'Winter Helmet',
+        category: 'accessories',
+        price: 149.99,
+        description: 'Lightweight helmet with adjustable ventilation and audio compatibility.',
+        features: ['MIPS technology', 'Adjustable vents', 'Audio compatible'],
+        specifications: {
+          weight: '0.5 kg',
+          dimensions: 'S/M/L',
+          material: 'ABS/EPS foam'
+        },
+        stock: 0, // Out of stock for testing
+        rating: 4.8,
+        reviews: 42,
+        image: '/images/products/helmet1.jpg'
       }
     ];
     

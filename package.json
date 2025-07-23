@@ -26,14 +26,14 @@
     "eslint-config-next": "14.0.4",
     "faker": "^6.6.6",
     "firebase-tools": "^14.10.0",
-    "jest": "^30.0.4",
+    "jest": "^30.0.5",
     "jest-puppeteer": "^11.0.0",
     "postcss": "^8.4.31",
-    "puppeteer": "^24.12.1",
+    "puppeteer": "^24.14.0",
     "tailwindcss": "^3.3.5"
   },
   "jest": {
-  "preset": "jest-puppeteer",
-  "testTimeout": 30000
-}
+    "preset": "jest-puppeteer",
+    "testTimeout": 30000
+  }
 }

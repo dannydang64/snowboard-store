@@ -1,0 +1,18 @@
+[
+  {
+    "type": "valid",
+    "cardNumber": "4111111111111111",
+    "cardName": "Test User",
+    "expiryMonth": "12",
+    "expiryYear": "2030",
+    "cvv": "123"
+  },
+  {
+    "type": "expired",
+    "cardNumber": "4111111111111111",
+    "cardName": "Test User",
+    "expiryMonth": "01",
+    "expiryYear": "2020",
+    "cvv": "123"
+  }
+]

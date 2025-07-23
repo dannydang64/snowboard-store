@@ -1,0 +1,74 @@
+[
+  {
+    "id": "sb-001",
+    "name": "Alpine Freestyle Snowboard",
+    "category": "snowboards",
+    "price": 399.99,
+    "description": "Versatile all-mountain snowboard for freestyle riding",
+    "image": "/images/snowboard1.jpg",
+    "specs": {
+      "length": "156cm",
+      "width": "25cm",
+      "flex": "Medium",
+      "terrain": "All-Mountain"
+    },
+    "inStock": true
+  },
+  {
+    "id": "sb-002",
+    "name": "Powder Pro Snowboard",
+    "category": "snowboards",
+    "price": 499.99,
+    "description": "Wide powder snowboard for deep snow days",
+    "image": "/images/snowboard2.jpg",
+    "specs": {
+      "length": "162cm",
+      "width": "26.5cm",
+      "flex": "Medium-Stiff",
+      "terrain": "Powder"
+    },
+    "inStock": true
+  },
+  {
+    "id": "bd-001",
+    "name": "Flex Bindings",
+    "category": "bindings",
+    "price": 199.99,
+    "description": "Responsive bindings with medium flex",
+    "image": "/images/bindings1.jpg",
+    "specs": {
+      "size": "M/L",
+      "flex": "Medium",
+      "entry": "Strap-In"
+    },
+    "inStock": true
+  },
+  {
+    "id": "bt-001",
+    "name": "All-Mountain Boots",
+    "category": "boots",
+    "price": 249.99,
+    "description": "Comfortable boots for all-day riding",
+    "image": "/images/boots1.jpg",
+    "specs": {
+      "size": "US 10",
+      "flex": "Medium",
+      "lacing": "BOA"
+    },
+    "inStock": true
+  },
+  {
+    "id": "ac-001",
+    "name": "Winter Goggles",
+    "category": "accessories",
+    "price": 89.99,
+    "description": "Anti-fog goggles with UV protection",
+    "image": "/images/goggles1.jpg",
+    "specs": {
+      "lensType": "Spherical",
+      "uvProtection": "100%",
+      "antiFog": true
+    },
+    "inStock": true
+  }
+]

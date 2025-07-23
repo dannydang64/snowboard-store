@@ -325,6 +325,7 @@ class CartPage extends BasePage {
   async proceedToCheckout() {
     if (this.testMode === 'mock') {
       console.log('Proceeding to checkout in mock mode');
+      await page.goto('http://localhost:3000/checkout');
       return;
     }
     
